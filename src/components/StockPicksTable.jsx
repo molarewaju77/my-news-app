@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Box, Tabs, Tab } from "@mui/material";
 
 // Import your tab components
-import VbtcTab from "./StockPickTables/VBTCTab";
+import VbtcTab from "./StockPickTables/VbtcTab";
 import TenetTab from "./StockPickTables/TenetTab";
 import IronDomeTab from "./StockPickTables/IronDomeTab";
 import GlobalStarsTab from "./StockPickTables/GlobalStarsTab";

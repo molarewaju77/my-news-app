@@ -31,7 +31,8 @@ const rows = [
 
 const isPremium = false;
 
-const VbtcTab = () => {
+
+export default function VbtcTab(){
   return (
     <Box>
       <TableContainer component={Paper} sx={{ overflowX: "auto" ,}}>
@@ -90,4 +91,3 @@ const VbtcTab = () => {
   );
 };
 
-export default VbtcTab;

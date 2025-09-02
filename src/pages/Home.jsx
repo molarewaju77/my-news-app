@@ -16,7 +16,7 @@ import StockPicksTable from '../components/StockPicksTable';//will check this la
 const Home = () => {
 
   return (
-    <Box sx={{boxShadow:1,boxShadow:'1',display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center",maxWidth:"100%"}}>
+    <Box sx={{boxShadow:'1',display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center",maxWidth:"100%"}}>
       <MarketOverview/>
       <Composites/>
       <Box mt="30px" sx={{height:"100px",width:"95%",backgroundColor:"gray",display:"flex",alignItems:"center",justifyContent:"center"}}>
