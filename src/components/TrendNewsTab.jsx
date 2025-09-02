@@ -3,7 +3,7 @@ import React from 'react'
 import { Typography, Divider, CardMedia } from "@mui/material";
 
 //mock image // will be replaced with api later 
-import trendNewsImg from "../assets/TrendNewsimg.png"
+import trendNewsImg from "../assets/TrendNewsImg.png"
 
 // mockTrendingNews will bw replaced with api later
  const trendingNews = [
