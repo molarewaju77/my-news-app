@@ -5,7 +5,7 @@ import Composites from '../components/Composite';
 
 const NewsPage = () => {
   return (
-    <Box sx={{boxShadow:1,boxShadow:'1',display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center",maxWidth:"100%"}}>
+    <Box sx={{boxShadow:1,display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center",maxWidth:"100%"}}>
       <MarketOverview/>
       <Composites/>
     </Box>
