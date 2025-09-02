@@ -3,13 +3,13 @@ import React from 'react'
 import { Typography, Divider, CardMedia } from "@mui/material";
 
 //mock image // will be replaced with api later 
-import TrendNewsImg from "../assets/TrendNewsimg.png"
+import trendNewsImg from "../assets/TrendNewsimg.png"
 
 // mockTrendingNews will bw replaced with api later
  const trendingNews = [
   {
     id: 1,
-    image:  TrendNewsImg ,
+    image:  trendNewsImg ,
     title: "Government Launches New Initiative",
     summary: "Power Banks, A/C Units Among Recent Recalled Items Sold at Costcoc Power Banks, A/C Units Among Recent Recalled Items Sold at Costco",
     timestamp: "Today, 4:42 PM",
@@ -21,7 +21,7 @@ import TrendNewsImg from "../assets/TrendNewsimg.png"
   },
   {
     id: 2,
-    image: TrendNewsImg ,
+    image: trendNewsImg ,
     title: "Tech Giants Announce Partnership",
     summary: "Power Banks, A/C Units Among Recent Recalled Items Sold at Costcoc Power Banks, A/C Units Among Recent Recalled Items Sold at Costco",
     timestamp: "Today, 3:30 PM",
@@ -32,7 +32,7 @@ import TrendNewsImg from "../assets/TrendNewsimg.png"
   },
   {
     id: 3,
-    image: TrendNewsImg ,
+    image: trendNewsImg ,
     title: "Stock Market Hits Record High",
     summary: "The stock market reached an all-time high today with investors optimistic.",
     timestamp: "Today, 2:15 PM",
@@ -41,7 +41,7 @@ import TrendNewsImg from "../assets/TrendNewsimg.png"
   },
   {
     id: 4,
-    image: TrendNewsImg,
+    image: trendNewsImg,
     title: "New Breakthrough in Renewable Energy",
     summary: "Scientists report a major breakthrough in renewable energy technology.",
     timestamp: "Today, 6:00 PM",

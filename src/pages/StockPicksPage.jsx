@@ -12,7 +12,7 @@ const StockPicksPage = () => {
   const { showRightbar } = useOutletContext();
 
   return (
-    <Box sx={{boxShadow:1,boxShadow:'1',display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center",maxWidth:"100%"}}>
+    <Box sx={{boxShadow:'1',display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center",maxWidth:"100%"}}>
       <MarketOverview/>
       <Composites/>
       <Box sx={{width:"95%",marginTop:"49px"}}>

@@ -9,7 +9,7 @@ import TradeAlerts from '../components/Trade-Alert/TradeAlerts';
 
 const TradeAlertPage = () => {
   return (
-    <Box sx={{boxShadow:1,boxShadow:'1',display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center",maxWidth:"100%"}}>
+    <Box sx={{boxShadow:'1',display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center",maxWidth:"100%"}}>
       <MarketOverview/>
       <Composites/>
       

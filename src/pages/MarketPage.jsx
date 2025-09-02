@@ -7,7 +7,7 @@ import MarketsTable from '../components/MarketsTable';
 
 const MarketPage = () => {
   return (
-    <Box sx={{boxShadow:1,boxShadow:'1',display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center",maxWidth:"100%"}}>
+    <Box sx={{boxShadow:1,display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center",maxWidth:"100%"}}>
       <MarketOverview/>
       <Composites/>
       <Box sx={{marginTop:"78px",width:'95%'}}>
