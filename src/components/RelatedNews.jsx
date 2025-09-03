@@ -6,7 +6,7 @@ import { Typography, Divider, CardMedia } from "@mui/material";
 import trendNewsImg from "../assets/TrendNewsImg.png"
 
 // mockTrendingNews will bw replaced with api later
- const trendingNews = [
+ const relatedNews = [
   {
     id: 1,
     image:  trendNewsImg ,
@@ -52,64 +52,12 @@ import trendNewsImg from "../assets/TrendNewsImg.png"
       { id: 3, author: "Ife", text: "Good for the planet.", time: "6:25 PM" }
     ]
   },
-    {
-    id: 5,
-    image: trendNewsImg,
-    title: "New Breakthrough in Renewable Energy",
-    summary: "Scientists report a major breakthrough in renewable energy technology.",
-    timestamp: "Today, 6:00 PM",
-    publisher: "Ridwan",
-    comments: [
-      { id: 1, author: "Amaka", text: "This is promising!", time: "6:15 PM" },
-      { id: 2, author: "Tunde", text: "Future looks bright.", time: "6:20 PM" },
-      { id: 3, author: "Ife", text: "Good for the planet.", time: "6:25 PM" }
-    ]
-  },
-    {
-    id: 6,
-    image: trendNewsImg,
-    title: "New Breakthrough in Renewable Energy",
-    summary: "Scientists report a major breakthrough in renewable energy technology.",
-    timestamp: "Today, 6:00 PM",
-    publisher: "Ridwan",
-    comments: [
-      { id: 1, author: "Amaka", text: "This is promising!", time: "6:15 PM" },
-      { id: 2, author: "Tunde", text: "Future looks bright.", time: "6:20 PM" },
-      { id: 3, author: "Ife", text: "Good for the planet.", time: "6:25 PM" }
-    ]
-  },
-    {
-    id: 7,
-    image: trendNewsImg,
-    title: "New Breakthrough in Renewable Energy",
-    summary: "Scientists report a major breakthrough in renewable energy technology.",
-    timestamp: "Today, 6:00 PM",
-    publisher: "Ridwan",
-    comments: [
-      { id: 1, author: "Amaka", text: "This is promising!", time: "6:15 PM" },
-      { id: 2, author: "Tunde", text: "Future looks bright.", time: "6:20 PM" },
-      { id: 3, author: "Ife", text: "Good for the planet.", time: "6:25 PM" }
-    ]
-  },
-      {
-    id: 8,
-    image: trendNewsImg,
-    title: "New Breakthrough in Renewable Energy",
-    summary: "Scientists report a major breakthrough in renewable energy technology.",
-    timestamp: "Today, 6:00 PM",
-    publisher: "Ridwan",
-    comments: [
-      { id: 1, author: "Amaka", text: "This is promising!", time: "6:15 PM" },
-      { id: 2, author: "Tunde", text: "Future looks bright.", time: "6:20 PM" },
-      { id: 3, author: "Ife", text: "Good for the planet.", time: "6:25 PM" }
-    ]
-  }
 ];
 
-export default function TrendNewsTab() {
+export default function RelatedNews() {
   return (
     <Box sx={{gap:"15px", display:"flex", flexDirection:"column"}} >
-      {trendingNews.map((news, index) => (
+      {relatedNews.map((news, index) => (
         <React.Fragment key={news.id}>
           <Box display="flex" gap="10px" alignItems={"center"}>
             <CardMedia
@@ -133,7 +81,7 @@ export default function TrendNewsTab() {
           </Box>
 
           {/* Divider between items*/}
-          {index < trendingNews.length && <Divider />}
+          {index < relatedNews.length && <Divider />}
         </React.Fragment>
       ))}
     </Box>

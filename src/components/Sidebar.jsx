@@ -58,6 +58,7 @@ const Sidebar = ({ mobileOpen, onClose }) => {
     {/* for mobile screen */}
     <Drawer sx={{width:"200px", position:"fixed "}}
     open={mobileOpen}
+    onClick={onClose}
     onClose={onClose}   // clicking outside or Esc will also call onClose
     >
       {DrawerContent}

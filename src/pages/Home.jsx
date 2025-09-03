@@ -22,11 +22,13 @@ const Home = () => {
       <Box mt="30px" sx={{height:"100px",width:"95%",backgroundColor:"gray",display:"flex",alignItems:"center",justifyContent:"center"}}>
         Ads Space
       </Box>
-      <Box sx={{width:"95%"}}>
+      <Box sx={{width:"95%",mt:"28px"}}>
         <Button color='black' endIcon={<ArrowForwardIosOutlinedIcon/>} sx={{fontSize:"24px",fontWeight:"700",textTransform:"none"}} component={RouterLink} to="/news">
           News
         </Button>
-        <News/>
+        <Box sx={{height:"550px",overflow:"hidden"}}>
+          <News/>
+        </Box>
         <Box sx={{mt:"28px",textAlign:"right",}}>
            <Link underline='none' sx={{fontSize:"12px",fontWeight:"500",color:"#218BC5"}} component={RouterLink} to="/news"> Show more news </Link>
         </Box>
@@ -78,7 +80,7 @@ const Home = () => {
         </Box>
 
         <Box sx={{mt:"28px",textAlign:"right",}}>
-          <Link underline='none' sx={{fontSize:"12px",fontWeight:"500",color:"#218BC5"}} component={RouterLink} to="/"> Show more trade alert</Link>
+          <Link underline='none' sx={{fontSize:"12px",fontWeight:"500",color:"#218BC5"}} component={RouterLink} to="/trade-alert"> Show more trade alert</Link>
         </Box>
 
         <Box mt="50px" sx={{height:"100px",width:"100%",backgroundColor:"gray",display:"flex",alignItems:"center",justifyContent:"center"}}>
