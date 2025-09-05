@@ -1,4 +1,4 @@
-import { Box, Button, Typography } from '@mui/material'
+import { Box, Button, Card, CardContent, Typography } from '@mui/material'
 import React from 'react'
 import MarketOverview from '../components/MarketOverview';
 import Composites from '../components/Composite';
@@ -6,9 +6,48 @@ import News from '../components/News';
 import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined';
 import LatestNews from '../components/LatestNews';
 
+import { Link } from 'react-router-dom';
+
 
 const NewsPage = () => {
+
   return (
+    <>
+     {/* <div>
+      <Typography variant="h4">News List</Typography>
+      {news.map((item) => (
+        <Card key={item.id} sx={{ marginBottom: 2 }}>
+          <CardContent>
+            <Typography variant="h6">{item.title}</Typography>
+            <Button
+              component={Link}
+              to={`/news/${item.id}`}
+              variant="outlined"
+              sx={{ marginTop: 1 }}
+            >
+              Read More
+            </Button>
+          </CardContent>
+        </Card>
+      ))}
+    </div>
+
+
+
+
+
+ */}
+
+
+
+
+
+
+
+
+
+
+
     <Box sx={{boxShadow:1,display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center",maxWidth:"100%"}}>
       <MarketOverview/>
       <Composites/>
@@ -35,6 +74,7 @@ const NewsPage = () => {
         </Box>
       </Box>
     </Box>
+    </>
   )
 }
 

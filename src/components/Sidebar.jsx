@@ -28,7 +28,7 @@ const Sidebar = ({ mobileOpen, onClose }) => {
     <Box sx={{display:"flex", justifyContent:"center", flexDirection:"column",marginTop:"40px", width:{xs: Drawerwidth, md:"200px"}}}>
       <Box sx={{display:"flex", flexDirection:"column"}}>
         {Links.map((Link, index) =>(
-          <MuiLink key={index} to={Link.path} component={NavLink} underline='none' sx={{fontSize:"14px",height:"40px",paddingLeft:"26px"}}>
+          <MuiLink key={index} to={Link.path} component={NavLink} underline='none' sx={{fontSize:"14px",height:"40px",paddingLeft:"26px",/* backgroundColor:"rgba(250, 250, 250, 1)",borderRight:" 2px solid rgba(0, 0, 0, 1)"*/}}>
             {Link.text}
           </MuiLink>
         ))
@@ -51,7 +51,7 @@ const Sidebar = ({ mobileOpen, onClose }) => {
   return (
     <>
     {/* For desktop */}
-    <Box sx={{borderRight:"1px solid black",width: "200px", position: "fixed",paddingTop:"80px", height: "100vh" , display:{xs:"none",md:"block"}}} minHeight="100vh" maxHeight="">
+    <Box sx={{width: "200px", position: "fixed",paddingTop:"80px", height: "100vh" , display:{xs:"none",md:"block"}}} minHeight="100vh" maxHeight="">
       {DrawerContent}
     </Box>
 
