@@ -63,6 +63,21 @@ const NewsDetailsPage = () => {
       [id]: !prev[id],
     }));
   };
+   
+  const handleShare = () => { 
+  if (navigator.share) {
+    navigator.share({
+      title: news.title, // Title of the content
+      text: "Check out this news article!", // Message
+      url: window.location.href, // Current page URL
+    })
+    .then(() => console.log("Shared successfully!"))
+    .catch((error) => console.error("Error sharing", error));
+  } else {
+    alert("Sharing is not supported on this device/browser.");
+  }
+};
+
     
   return (
     <Box sx={{width:"100%", margin:"auto", boxShadow:"1"}}>
@@ -76,15 +91,15 @@ const NewsDetailsPage = () => {
         </Box>
         <Box mt={'88px'} sx={{height:"369px", width:"100%"}} src={news.image} alt={"news.title"} component="img"/>
         <Box mt={"27px"} py={"20px"}>
-          {Array.isArray(news.summary) ? //to confirm if the summary is an array in case it a single comment that not in an array 
-            <Stack spacing={1}>
+          {Array.isArray(news.summary) ? //to confirm if the summary is an array 
+            <Stack spacing={2}>
               {news.summary.map((paragraph, index) => (
                 <Typography key={index} fontSize="16px" lineHeight="28px">
                   {paragraph}
                 </Typography>
               ))}
             </Stack>
-                :  // when the comment is a single comment and not in an array so it will render this 
+                :  // when the summary is a single line summary and not in an array so it will render this 
             (
               <Typography>
                 {news.summary} 
@@ -94,7 +109,7 @@ const NewsDetailsPage = () => {
         </Box>
         <Divider/>
           <Box display={'flex'} gap={'40px'} height={'65px'} alignItems={'center'}>
-            <Button sx={{fontSize:"12px",color:"#218BC5",textTransform:"none"}} startIcon={<ShareOutlinedIcon/>}>Share</Button>
+            <Button onClick={handleShare} sx={{fontSize:"12px",color:"#218BC5",textTransform:"none"}} startIcon={<ShareOutlinedIcon/>}>Share</Button>
             <Box>
               <Button onClick={handleShowComment}  sx={{fontSize:"12px",color:"#218BC5",textTransform:"none"}} startIcon={<IoChatbubbleOutline/>}>
               Comments&nbsp;({(news.comments.length)})
@@ -166,7 +181,7 @@ const NewsDetailsPage = () => {
                       </Typography>
                       <Box sx={{gap:"20px", display:"flex"}} >
                         <Button  onClick={() => toggleLike(comment.id)} startIcon={likedComments[comment.id] ? <ThumbUpAltIcon/> : <ThumbUpOffAltIcon/>} sx={{textTransform:"none", color:"rgba(110, 110, 112, 1)"}}>Like</Button>
-                        <Button startIcon={<PiShareFat/>} sx={{textTransform:"none"}} color='rgba(110, 110, 112, 1)'>share</Button>
+                        <Button onClick={handleShare} startIcon={<PiShareFat/>} sx={{textTransform:"none"}} color='rgba(110, 110, 112, 1)'>share</Button>
                       </Box>
                     </Box>
                     <Divider sx={{ mt: 2 }} /> 
@@ -174,41 +189,9 @@ const NewsDetailsPage = () => {
                 ))}
               </Box>
             </Box>
-          }
+          } 
         </Box>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        {/* Related News  */}
         <Box mt={'91px'}>
           <Typography sx={{fontSize:"24px", fontWeight:"700"}}>Related News</Typography>
           <Box mt={'20px'}>
@@ -221,43 +204,3 @@ const NewsDetailsPage = () => {
 }
 
 export default NewsDetailsPage
-
-
-//           {news.comments.map((comment, index) => (
-//   <Box key={index} display="flex" gap="10px" mb={2}>
-    // <Avatar
-    //   src={comment.image || undefined}
-    //   sx={{
-    //     width: 40,
-    //     height: 40,
-    //     fontSize: 16,
-    //     bgcolor: "primary.main",
-    //   }}
-    // >
-    //   {!comment.image && comment.name.charAt(0).toUpperCase()}
-    // </Avatar>
-
-//     <Box>
-//       <Box display="flex" alignItems="center" gap="10px">
-//         <Typography fontWeight="bold">{comment.name}</Typography>
-//         <Typography fontSize="12px" color="text.secondary">
-//           {comment.time}
-//         </Typography>
-//       </Box>
-
-//       <Typography fontSize="14px" mt={0.5}>
-//         {comment.text}
-//       </Typography>
-
-//       {/* Optional Like / Share buttons */}
-//       <Box display="flex" gap="15px" mt={1}>
-//         <Button size="small" sx={{ fontSize: "12px", textTransform: "none", p: 0 }}>
-//           Like
-//         </Button>
-//         <Button size="small" sx={{ fontSize: "12px", textTransform: "none", p: 0 }}>
-//           Share
-//         </Button>
-//       </Box>
-//     </Box>
-//   </Box>
-// ))}

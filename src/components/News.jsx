@@ -1,34 +1,39 @@
 import React, { useState } from "react";
-import { Box, Tabs, Tab } from "@mui/material";
-
-// Import your tab components
-import TrendNewsTab from "./TrendNewsTab";
-import TechNewsTab from "./TechNewsTab";
-import StockNewsTab from "./StockNewsTab";
-import CryptoNewsTab from "./CryptoNewsTab";
-import EnergyNewsTab from "./EnergyNewsTab";
-import PoliticsNewsTab from "./PoliticsNewsTab";
+import { Box, Tabs, Tab, CardMedia, Divider, Typography } from "@mui/material";
 
 
-// Mock data for tabs
+import { useContext } from "react";
+import { NewsContext } from "../Context/NewsContext";
+
 const mockTabs = [
-  { label: "Trending News", component: <TrendNewsTab/>},
-  { label: "Tech", component: <TechNewsTab/>},
-  { label: "Stock", component:<StockNewsTab/>},
-  { label: "Cryptocurrency", component:<CryptoNewsTab/>},
-  { label: "Energy", component:<EnergyNewsTab/>},
-  { label: "Politics", component:<PoliticsNewsTab/>},
+  { label: "Trending News", category: "trending" },
+  { label: "Tech", category: "tech" },
+  { label: "Stock", category: "stock" },
+  { label: "Cryptocurrency", category: "crypto" },
+  { label: "Energy", category: "energy" },
+  { label: "Politics", category: "politics" },
 ];
 
 export default function News(){
-    const [value, setValue] = useState(0);
+  const [value, setValue] = useState(0);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
+  const {News, loading} = useContext(NewsContext)
+
+  if (loading) return <Typography>Loadinnhh</Typography>
+
+  // Get active tab category
+  const activeCategory = mockTabs[value].category;
+
+  // Filter news based on tab
+  const filteredNews = News.filter(item => item.category === activeCategory);
+
   
-    const handleChange = (event, newValue) => {
-        setValue(newValue);
-    };
 
   return(
-    // <TableContainer sx={{ overflowX: "auto" }}></TableContainer> add to my tables to avoid overflow
     <Box sx={{width:"100%"}}>
       <Tabs                 
         value={value}
@@ -51,18 +56,46 @@ export default function News(){
             sx={{
             color: value === index ? "#218BC5" : "#232526",
             borderBottom: 1, borderColor: 'divider',
-            textTransform: "none",
-            fontSize:"16px",
-            fontWeight:"600",
+            fontSize:"13px",
             }}
           />
         ))}
       </Tabs>
-
       <Box sx={{marginTop:"30px"}}>
-        {mockTabs[value].component}
+        {filteredNews.length > 0 ? (
+          filteredNews.map((news, index)=> (
+        <React.Fragment key={news.id}>
+          <Box display="flex" gap="10px" alignItems={"center"}>
+            <CardMedia
+              component="img"
+              image={news.image}
+              alt={news.title}
+              sx={{ width: 139, height: 91, objectFit: "cover" }}
+            />
+            <Box>
+              <Typography sx={{fontSize:"14px", fontWeight:"700"}}>
+                {news.title}
+              </Typography>
+              {/* display summary on only large screen */}
+              <Typography sx={{fontSize:"14px", fontWeight:"500", display:{xs:"none", md:"flex"}}}>
+                {news.summary}
+              </Typography>
+              <Typography sx={{fontSize:"8.57px"}} variant="caption" color="#6E6E70" display="block" mt={1}>
+                {news.timestamp} &nbsp; • &nbsp;  {news.comments.length}  Comments &nbsp;  • &nbsp;  By {news.publisher}
+              </Typography>
+            </Box>
+          </Box>
+
+          {/* Divider between items*/}
+          {index < filteredNews.length && <Divider/>}
+        </React.Fragment>
+          ))
+        ) : (
+          <Typography>No news found in this category.</Typography>
+        )}
       </Box>
     </Box>
-
   );
 }
+
+

@@ -25,38 +25,41 @@ import CodePhoneNumber from "../src/components/Auth/CodeEmail";
 
 import ScrollToTop from './components/ScrollToTop';
 
-import { NewsProvider } from './Context/LatestNewsContext';
+import {  LatestNewsProvider } from './Context/LatestNewsContext';
+import {NewsProvider} from './Context/NewsContext';
 
 function App() {
   return (
     <>
-      <NewsProvider>
-        <ScrollToTop />
-        <Routes>
-          <Route element={<BaseLayout/>}>
-            <Route path='/' element={<Home/>}/>
-            <Route path='/news' element={<NewsPage/>}/>
-            <Route path='/news/:id' element={<NewsDetailsPage/>}/>
-            <Route path='/market' element={<MarketPage/>}/>
-            <Route path='/stock-picks' element={<StockPicksPage/>}/>
-            <Route path='/trade-alert' element={<TradeAlertPage/>}/>
-            <Route path='/videos' element={<VideosPage/>}/>
-          </Route>
+      <LatestNewsProvider>
+        <NewsProvider>
+          <ScrollToTop />
+          <Routes>
+            <Route element={<BaseLayout/>}>
+              <Route path='/' element={<Home/>}/>
+              <Route path='/news' element={<NewsPage/>}/>
+              <Route path='/news/:id' element={<NewsDetailsPage/>}/>
+              <Route path='/market' element={<MarketPage/>}/>
+              <Route path='/stock-picks' element={<StockPicksPage/>}/>
+              <Route path='/trade-alert' element={<TradeAlertPage/>}/>
+              <Route path='/videos' element={<VideosPage/>}/>
+            </Route>
 
-          {/* pages /components using only Navbar Layout{only NAvbar at the Top} */}
-          <Route element={<NavbarLayout/>}>
-            <Route path='/subscription' element={<Subscription/>}/>
-            <Route path="/dashboard" element={<Dashboard/>}/>
-          </Route>
+            {/* pages /components using only Navbar Layout{only NAvbar at the Top} */}
+            <Route element={<NavbarLayout/>}>
+              <Route path='/subscription' element={<Subscription/>}/>
+              <Route path="/dashboard" element={<Dashboard/>}/>
+            </Route>
 
-            {/* for sign up flow*/}
-            <Route path='/register' element={<Registration/>} />
-            <Route path="/Login" element={<Login />} />
-            <Route path='/set-password' element={<SetPassword/>} ></Route>
-            <Route path="/NumberVal" element={<NumberVal/>}/>
-            <Route path="/code-phone-number" element={<CodePhoneNumber/>}/> 
-        </Routes>
-      </NewsProvider>
+              {/* for sign up flow*/}
+              <Route path='/register' element={<Registration/>} />
+              <Route path="/Login" element={<Login />} />
+              <Route path='/set-password' element={<SetPassword/>} ></Route>
+              <Route path="/NumberVal" element={<NumberVal/>}/>
+              <Route path="/code-phone-number" element={<CodePhoneNumber/>}/> 
+          </Routes>
+        </NewsProvider>
+      </LatestNewsProvider>
     </>
   )
 }

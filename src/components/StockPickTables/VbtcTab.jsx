@@ -15,19 +15,68 @@ import LockedCell from "./LockedCell";
 
 // Mock data (will be replaced with API later)
 const rows = [
-  { ticker: "PLTR", name: "Palantir Technologies Inc", marketCap: "64.66B", currentPrice: 142.1, sharePortfolio: "62.27%", marginHigh: "-4.13%", marginLow: "569.34%", wksHigh: 148.22, wksLow: 21.23 },
-  { ticker: "UBER", name: "Uber Technologies Inc", marketCap: "64.66B", currentPrice: 142.1, sharePortfolio: "62.27%", marginHigh: "-4.13%", marginLow: "569.34%", wksHigh: 148.22, wksLow: 21.23 },
-  { ticker: "HOOD", name: "Robinhood Markets Inc", marketCap: "64.66B", currentPrice: 142.1, sharePortfolio: "62.27%", marginHigh: "-4.13%", marginLow: "569.34%", wksHigh: 148.22, wksLow: 21.23 },
-  { ticker: "AAPL", name: "Apple Inc", marketCap: "2.86T", currentPrice: 227.12, sharePortfolio: "18.53%", marginHigh: "-2.44%", marginLow: "89.72%", wksHigh: 232.67, wksLow: 119.55 },
-  { ticker: "MSFT", name: "Microsoft Corp", marketCap: "2.73T", currentPrice: 412.59, sharePortfolio: "15.47%", marginHigh: "-3.12%", marginLow: "67.81%", wksHigh: 425.25, wksLow: 245.92 },
-  { ticker: "AMZN", name: "Amazon.com Inc", marketCap: "1.92T", currentPrice: 182.44, sharePortfolio: "10.22%", marginHigh: "-1.66%", marginLow: "73.18%", wksHigh: 185.55, wksLow: 105.37 },
-  { ticker: "GOOGL", name: "Alphabet Inc Class A", marketCap: "2.08T", currentPrice: 166.31, sharePortfolio: "12.04%", marginHigh: "-2.83%", marginLow: "82.14%", wksHigh: 171.17, wksLow: 91.34 },
-  { ticker: "TSLA", name: "Tesla Inc", marketCap: "842.15B", currentPrice: 269.85, sharePortfolio: "8.11%", marginHigh: "-6.21%", marginLow: "91.38%", wksHigh: 287.50, wksLow: 140.95 },
-  { ticker: "NVDA", name: "NVIDIA Corp", marketCap: "3.12T", currentPrice: 1187.62, sharePortfolio: "21.76%", marginHigh: "-1.28%", marginLow: "112.59%", wksHigh: 1203.54, wksLow: 545.12 },
-  { ticker: "META", name: "Meta Platforms Inc", marketCap: "1.27T", currentPrice: 478.92, sharePortfolio: "9.43%", marginHigh: "-2.09%", marginLow: "95.23%", wksHigh: 488.32, wksLow: 245.12 },
-
-  // ...more rows
+  { 
+    ticker: "PLTR", 
+    name: "Palantir Technologies Inc", 
+    marketCap: "64.66B", 
+    currentPrice: 142.1, 
+    sharePortfolio: "62.27%", 
+    marginHigh: "-4.13%", 
+    marginLow: "569.34%", 
+    wksHigh: 148.22, 
+    wksLow: 21.23,
+    category: "VBTC-500"
+  },
+  { 
+    ticker: "UBER", 
+    name: "Uber Technologies Inc", 
+    marketCap: "64.66B", 
+    currentPrice: 142.1, 
+    sharePortfolio: "62.27%", 
+    marginHigh: "-4.13%", 
+    marginLow: "569.34%", 
+    wksHigh: 148.22, 
+    wksLow: 21.23,
+    category: "VBTC-500"
+  },
+  { 
+    ticker: "AAPL", 
+    name: "Apple Inc", 
+    marketCap: "2.86T", 
+    currentPrice: 227.12, 
+    sharePortfolio: "18.53%", 
+    marginHigh: "-2.44%", 
+    marginLow: "89.72%", 
+    wksHigh: 232.67, 
+    wksLow: 119.55,
+    category: "Global Stars"
+  },
+  { 
+    ticker: "TSLA", 
+    name: "Tesla Inc", 
+    marketCap: "842.15B", 
+    currentPrice: 269.85, 
+    sharePortfolio: "8.11%", 
+    marginHigh: "-6.21%", 
+    marginLow: "91.38%", 
+    wksHigh: 287.50, 
+    wksLow: 140.95,
+    category: "Moonshots"
+  },
+  { 
+    ticker: "NVDA", 
+    name: "NVIDIA Corp", 
+    marketCap: "3.12T", 
+    currentPrice: 1187.62, 
+    sharePortfolio: "21.76%", 
+    marginHigh: "-1.28%", 
+    marginLow: "112.59%", 
+    wksHigh: 1203.54, 
+    wksLow: 545.12,
+    category: "Iron dome"
+  },
 ];
+
 
 const isPremium = false;
 

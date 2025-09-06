@@ -2,62 +2,16 @@ import { Box } from '@mui/material'
 import React from 'react'
 import { Typography, Divider, CardMedia } from "@mui/material";
 
-//mock image // will be replaced with api later 
-import trendNewsImg from "../assets/TrendNewsImg.png"
+import { useContext } from 'react';
+import { NewsContext } from '../Context/NewsContext';
 
-// mockTrendingNews will bw replaced with api later
- const relatedNews = [
-  {
-    id: 1,
-    image:  trendNewsImg ,
-    title: "Government Launches New Initiative",
-    summary: "Power Banks, A/C Units Among Recent Recalled Items Sold at Costcoc Power Banks, A/C Units Among Recent Recalled Items Sold at Costco",
-    timestamp: "Today, 4:42 PM",
-    publisher: "Ridwan",
-    comments: [
-      { id: 1, author: "Aisha", text: "Great move!", time: "4:50 PM" },
-      { id: 2, author: "Emeka", text: "Hope it works out.", time: "5:02 PM" }
-    ]
-  },
-  {
-    id: 2,
-    image: trendNewsImg ,
-    title: "Tech Giants Announce Partnership",
-    summary: "Power Banks, A/C Units Among Recent Recalled Items Sold at Costcoc Power Banks, A/C Units Among Recent Recalled Items Sold at Costco",
-    timestamp: "Today, 3:30 PM",
-    publisher: "Ridwan",
-    comments: [
-      { id: 1, author: "John", text: "This is huge!", time: "3:45 PM" }
-    ]
-  },
-  {
-    id: 3,
-    image: trendNewsImg ,
-    title: "Stock Market Hits Record High",
-    summary: "The stock market reached an all-time high today with investors optimistic.",
-    timestamp: "Today, 2:15 PM",
-    publisher: "Ridwan",
-    comments: []
-  },
-  {
-    id: 4,
-    image: trendNewsImg,
-    title: "New Breakthrough in Renewable Energy",
-    summary: "Scientists report a major breakthrough in renewable energy technology.",
-    timestamp: "Today, 6:00 PM",
-    publisher: "Ridwan",
-    comments: [
-      { id: 1, author: "Amaka", text: "This is promising!", time: "6:15 PM" },
-      { id: 2, author: "Tunde", text: "Future looks bright.", time: "6:20 PM" },
-      { id: 3, author: "Ife", text: "Good for the planet.", time: "6:25 PM" }
-    ]
-  },
-];
 
 export default function RelatedNews() {
+  const {News} = useContext(NewsContext)
+
   return (
     <Box sx={{gap:"15px", display:"flex", flexDirection:"column"}} >
-      {relatedNews.map((news, index) => (
+      {News.map((news, index) => (
         <React.Fragment key={news.id}>
           <Box display="flex" gap="10px" alignItems={"center"}>
             <CardMedia
@@ -81,7 +35,7 @@ export default function RelatedNews() {
           </Box>
 
           {/* Divider between items*/}
-          {index < relatedNews.length && <Divider />}
+          {index < News.length && <Divider />}
         </React.Fragment>
       ))}
     </Box>

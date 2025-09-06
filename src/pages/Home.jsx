@@ -26,7 +26,8 @@ const Home = () => {
         <Button color='black' endIcon={<ArrowForwardIosOutlinedIcon/>} sx={{fontSize:"24px",fontWeight:"700",textTransform:"none"}} component={RouterLink} to="/news">
           News
         </Button>
-        <Box sx={{height:"550px",overflow:"hidden"}}>
+        {/* we can later use news context and skice part of the news so we dont show all in the daily brief page  */}
+        <Box sx={{overflow:"hidden"}}>
           <News/>
         </Box>
         <Box sx={{mt:"28px",textAlign:"right",}}>
