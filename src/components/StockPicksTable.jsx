@@ -18,11 +18,12 @@ const rows = [
   { ticker: "AAPL", name: "Apple Inc", marketCap: "2.86T", currentPrice: 227.12, sharePortfolio: "18.53%", marginHigh: "-2.44%", marginLow: "89.72%", wksHigh: 232.67, wksLow: 119.55, category: "Global Stars" },
   { ticker: "TSLA", name: "Tesla Inc", marketCap: "842.15B", currentPrice: 269.85, sharePortfolio: "8.11%", marginHigh: "-6.21%", marginLow: "91.38%", wksHigh: 287.50, wksLow: 140.95, category: "Moonshots" },
   { ticker: "NVDA", name: "NVIDIA Corp", marketCap: "3.12T", currentPrice: 1187.62, sharePortfolio: "21.76%", marginHigh: "-1.28%", marginLow: "112.59%", wksHigh: 1203.54, wksLow: 545.12, category: "Iron dome" },
+    { ticker: "NVDA", name: "NVIDIA Corp", marketCap: "3.12T", currentPrice: 1187.62, sharePortfolio: "21.76%", marginHigh: "-1.28%", marginLow: "112.59%", wksHigh: 1203.54, wksLow: 545.12, category: "ETFs- Index Funds" },
 ];
 
 const categories = [
   { label: "VBTC-500", value: "VBTC-500" },
-  { label: "Tenet", value: "Tenet" },
+  { label: "Tenet", value: "Tenet"},
   { label: "Iron dome", value: "Iron dome" },
   { label: "Global Stars", value: "Global Stars" },
   { label: "Moonshots", value: "Moonshots" },
@@ -93,8 +94,9 @@ export default function StockPicksTable() {
                     sx={{
                       fontWeight: 600,
                       fontSize: "13px",
+                      lineHeight:"18px",
                       color: "#374151",
-                      padding: "10px 16px",
+                      padding: "10px 9px",
                       borderBottom: "2px solid #e5e7eb",
                     }}
                   >
