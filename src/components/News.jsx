@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Box, Tabs, Tab, CardMedia, Divider, Typography } from "@mui/material";
 
-
 import { useContext } from "react";
 import { NewsContext } from "../Context/NewsContext";
 
@@ -64,8 +63,8 @@ export default function News(){
       <Box sx={{marginTop:"30px"}}>
         {filteredNews.length > 0 ? (
           filteredNews.map((news, index)=> (
-        <React.Fragment key={news.id}>
-          <Box display="flex" gap="10px" alignItems={"center"}>
+        <Box key={news.id} sx={{mb:"20px"}}>
+          <Box display="flex" gap="10px" alignItems={"center"}  mb={"10px"}> 
             <CardMedia
               component="img"
               image={news.image}
@@ -88,7 +87,7 @@ export default function News(){
 
           {/* Divider between items*/}
           {index < filteredNews.length && <Divider/>}
-        </React.Fragment>
+        </Box>
           ))
         ) : (
           <Typography>No news found in this category.</Typography>

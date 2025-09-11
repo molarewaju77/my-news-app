@@ -58,7 +58,7 @@ const Home = () => {
         </Button>
 
         {/* added height 500px so it wont show the full table on the home page   */}
-        <Box sx={{height:"500px",overflowY:"hidden"}}>
+        <Box sx={{}}>
           <StockPicksTable/>
         </Box>
 

@@ -39,7 +39,7 @@ const NavBar = ({ onMenuClick }) => {
     const lastName = userData.lastName || "";
     const email = userData.email || "";
 
-    setUserInitial(firstName ? firstName.charAt(0).toUpperCase() : "");
+    // setUserInitial(firstName ? firstName.charAt(0).toUpperCase() : "");
     setFullName(`${firstName} ${lastName}`.trim());
     setEmail(email);
   }, [location]);
@@ -266,13 +266,20 @@ const NavBar = ({ onMenuClick }) => {
               {!userInitial ? (
                 <>
                   <Link to="/register">
-                    <button className="bg-gradient-to-r from-sky-700 to-sky-600 hover:from-sky-600 p-5 hover:to-sky-500 text-white px-5 py-2 rounded-full text-sm font-medium shadow hover:shadow-lg transition-all duration-200 active:scale-95">
+                    <button
+                      className="bg-[linear-gradient(90deg,#1B1464_0%,#1A1B6A_40%,#109BE8_100%)]
+                                border border-[#218BC5]
+                                text-white px-5 py-2
+                                rounded-full text-sm font-semibold
+                                shadow-[inset_0_0_10px_rgba(0,0,0,0.2)]
+                                hover:opacity-90
+                                transition-all duration-200 active:scale-95">
                       Get started
                     </button>
                   </Link>
 
                     <Link to="/login">
-                    <button className="border border-white/50 text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-white/5 transition-all duration-200 active:scale-95">
+                    <button className="border border-white text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-white/5 transition-all duration-200 active:scale-95">
                       Sign in
                     </button>
                   </Link>

@@ -4,19 +4,19 @@ import { Box, Typography, CardMedia } from "@mui/material";
 const videos = [
   {
     id: 1,
-    title: "Top 3 small-cap stock picks while navigating trade uncertainty",
-    thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg",
-    duration: "05:42",
-    url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    time: "13h ago"
+    title: "Oracle climbs 40% after earnings report & what it means for the market",
+    thumbnail: "https://img.youtube.com/vi/qUYW8F3zfrE/hqdefault.jpg",
+    duration: "06:15",
+    url: "https://www.youtube.com/watch?v=qUYW8F3zfrE",
+    time: "Just now"
   },
   {
     id: 2,
-    title: "What Wall Street is saying about this year's Fed rate cuts",
-    thumbnail: "https://img.youtube.com/vi/ysz5S6PUM-U/hqdefault.jpg",
-    duration: "05:42",
-    url: "https://www.youtube.com/watch?v=ysz5S6PUM-U",
-    time: "13h ago"
+    title: "Markets in 3 Minutes: US Stocks Will Continue to Underperform",
+    thumbnail: "https://img.youtube.com/vi/xn_JYMrRQeo/hqdefault.jpg",
+    duration: "03:00",
+    url: "https://www.youtube.com/watch?v=xn_JYMrRQeo",
+    time: "2 hours ago"
   },
   {
     id: 3,
@@ -96,7 +96,7 @@ const DailyBriefVideos = () => {
       sx={{
         display: "flex",
         gap:"30px",
-        overflowX:"auto"
+        overflowX:"scroll"
       }}
     >
       {videos.map((video) => (
