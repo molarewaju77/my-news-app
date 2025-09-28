@@ -16,13 +16,17 @@ export  const StockProvider = ({children}) => {
         { ticker: "UBER", name: "Uber Technologies Inc", marketCap: "122.3B", currentPrice: 62.4, sharePortfolio: "15.42%", marginHigh: "-3.55%", marginLow: "78.92%", wksHigh: 66.1, wksLow: 24.7, category: "VBTC-500" },
         { ticker: "MSFT", name: "Microsoft Corp", marketCap: "3.45T", currentPrice: 425.6, sharePortfolio: "23.12%", marginHigh: "-2.91%", marginLow: "64.15%", wksHigh: 432.8, wksLow: 290.3, category: "VBTC-500" },
         { ticker: "GOOGL", name: "Alphabet Inc", marketCap: "2.18T", currentPrice: 168.2, sharePortfolio: "10.32%", marginHigh: "-1.72%", marginLow: "54.47%", wksHigh: 172.3, wksLow: 98.6, category: "VBTC-500" },
+        { ticker: "CRM", name: "Salesforce Inc", marketCap: "300.5B", currentPrice: 275.8, sharePortfolio: "8.42%", marginHigh: "-2.18%", marginLow: "47.65%", wksHigh: 284.9, wksLow: 186.4, category: "VBTC-500" },
+        { ticker: "ADBE", name: "Adobe Inc", marketCap: "270.3B", currentPrice: 515.4, sharePortfolio: "7.92%", marginHigh: "-3.14%", marginLow: "51.32%", wksHigh: 528.6, wksLow: 375.8, category: "VBTC-500" },
 
         // Global Stars (4)
         { ticker: "AAPL", name: "Apple Inc", marketCap: "2.86T", currentPrice: 227.12, sharePortfolio: "18.53%", marginHigh: "-2.44%", marginLow: "89.72%", wksHigh: 232.67, wksLow: 119.55, category: "Global Stars" },
         { ticker: "AMZN", name: "Amazon.com Inc", marketCap: "1.88T", currentPrice: 189.4, sharePortfolio: "12.47%", marginHigh: "-3.01%", marginLow: "73.64%", wksHigh: 196.7, wksLow: 103.2, category: "Global Stars" },
         { ticker: "META", name: "Meta Platforms Inc", marketCap: "1.34T", currentPrice: 497.3, sharePortfolio: "9.87%", marginHigh: "-5.23%", marginLow: "84.12%", wksHigh: 515.6, wksLow: 275.8, category: "Global Stars" },
         { ticker: "NFLX", name: "Netflix Inc", marketCap: "288.4B", currentPrice: 650.7, sharePortfolio: "6.25%", marginHigh: "-4.41%", marginLow: "77.53%", wksHigh: 672.2, wksLow: 345.9, category: "Global Stars" },
-
+        { ticker: "DIS", name: "Walt Disney Co", marketCap: "210.1B", currentPrice: 101.8, sharePortfolio: "4.11%", marginHigh: "-1.85%", marginLow: "46.23%", wksHigh: 105.2, wksLow: 82.5, category: "Global Stars" },
+        { ticker: "NVDA", name: "NVIDIA Corp", marketCap: "3.12T", currentPrice: 1187.6, sharePortfolio: "22.16%", marginHigh: "-1.05%", marginLow: "112.12%", wksHigh: 1203.5, wksLow: 545.1, category: "Global Stars" },
+        
         // Moonshots (4)
         { ticker: "TSLA", name: "Tesla Inc", marketCap: "842.15B", currentPrice: 269.85, sharePortfolio: "8.11%", marginHigh: "-6.21%", marginLow: "91.38%", wksHigh: 287.50, wksLow: 140.95, category: "Moonshots" },
         { ticker: "SPCE", name: "Virgin Galactic Holdings", marketCap: "650M", currentPrice: 1.87, sharePortfolio: "2.11%", marginHigh: "-12.73%", marginLow: "215.43%", wksHigh: 6.7, wksLow: 0.87, category: "Moonshots" },

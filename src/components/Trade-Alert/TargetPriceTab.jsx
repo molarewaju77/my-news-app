@@ -79,7 +79,7 @@ const stockDataArray = [
     analysis: 'Market conditions favor this position with strong technical indicators supporting the move',
     holdPeriod: '1 week'
   },
-        {
+    {
     id: 6,
     symbol: 'TSA',
     company: 'Tesla INC',
@@ -97,7 +97,7 @@ const stockDataArray = [
 
 export default function TargetPriceTab() {
   return (
-      <Box sx={{display:"flex",flexWrap:"wrap",gap:"10px",justifyContent:"center"}}>
+      <Box sx={{display:"flex",flexWrap:"wrap",gap:{xs:"30px", md:"10px"},justifyContent:"center"}}>
         {stockDataArray.map((stockData) => {
           const isPositive = stockData.changePercent > 0;
           

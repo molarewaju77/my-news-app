@@ -9,6 +9,7 @@ import MarketPage from './pages/MarketPage';
 import StockPicksPage from './pages/StockPicksPage';
 import TradeAlertPage from './pages/TradeAlertPage';
 import VideosPage from './pages/VideosPage';
+import VideoDetailsPage from './pages/VideoDetailsPage';
 
 import NavbarLayout from './layouts/NavbarLayout';
 import Subscription from './components/subscription';
@@ -17,6 +18,8 @@ import Login from './pages/Auth/LoginPage';
 
 import Dashboard from "./pages/dashboard/Dashboard"; 
 
+//auth context
+import AuthProvider from './Context/AuthContext';
 
 //Auth components
 import SetPassword from "../src/components/Auth/SetPassword";
@@ -27,31 +30,34 @@ import ScrollToTop from './components/ScrollToTop';
 
 import {  LatestNewsProvider } from './Context/LatestNewsContext';
 import {NewsProvider} from './Context/NewsContext';
-import {StockProvider} from './Context/StockContext'
+import {StockProvider} from './Context/StockContext';
+import { VideoProvider } from './Context/VideoContext';
 
 function App() {
   return (
-    <>
+    <AuthProvider>
       <LatestNewsProvider>
         <NewsProvider>
           <StockProvider>
-          <ScrollToTop />
-            <Routes>
-              <Route element={<BaseLayout/>}>
-                <Route path='/' element={<Home/>}/>
-                <Route path='/news' element={<NewsPage/>}/>
-                <Route path='/news/:id' element={<NewsDetailsPage/>}/>
-                <Route path='/market' element={<MarketPage/>}/>
-                <Route path='/stock-picks' element={<StockPicksPage/>}/>
-                <Route path='/trade-alert' element={<TradeAlertPage/>}/>
-                <Route path='/videos' element={<VideosPage/>}/>
-              </Route>
+            <VideoProvider>
+              <ScrollToTop />
+              <Routes>
+                <Route element={<BaseLayout/>}>
+                  <Route path='/' element={<Home/>}/>
+                  <Route path='/news' element={<NewsPage/>}/>
+                  <Route path='/news/:id' element={<NewsDetailsPage/>}/>
+                  <Route path='/market' element={<MarketPage/>}/>  
+                  <Route path='/stock-picks' element={<StockPicksPage/>}/>
+                  <Route path='/trade-alert' element={<TradeAlertPage/>}/>
+                  <Route path='/videos' element={<VideosPage/>}/>
+                  <Route path='/videos/:id' element={<VideoDetailsPage/>}/>
+                </Route>
 
-              {/* pages /components using only Navbar Layout{only NAvbar at the Top} */}
-              <Route element={<NavbarLayout/>}>
-                <Route path='/subscription' element={<Subscription/>}/>
-                <Route path="/dashboard" element={<Dashboard/>}/>
-              </Route>
+                {/* pages /components using only Navbar Layout{only NAvbar at the Top} */}
+                <Route element={<NavbarLayout/>}>
+                  <Route path='/subscription' element={<Subscription/>}/>
+                  <Route path="/dashboard" element={<Dashboard/>}/>
+                </Route>
 
                 {/* for sign up flow*/}
                 <Route path='/register' element={<Registration/>} />
@@ -59,11 +65,12 @@ function App() {
                 <Route path='/set-password' element={<SetPassword/>} ></Route>
                 <Route path="/NumberVal" element={<NumberVal/>}/>
                 <Route path="/code-phone-number" element={<CodePhoneNumber/>}/> 
-            </Routes>     
+              </Routes>   
+            </VideoProvider>  
           </StockProvider>
         </NewsProvider>
       </LatestNewsProvider>
-    </>
+    </AuthProvider>
   )
 }
 

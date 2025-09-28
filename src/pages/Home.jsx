@@ -27,7 +27,7 @@ const Home = () => {
           News
         </Button>
         {/* we can later use news context and skice part of the news so we dont show all in the daily brief page  */}
-        <Box sx={{overflow:"hidden"}}>
+        <Box sx={{overflow:"hidden", height:"310px"}}>
           <News/>
         </Box>
         <Box sx={{mt:"28px",textAlign:"right",}}>

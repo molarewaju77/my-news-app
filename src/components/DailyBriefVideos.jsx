@@ -1,40 +1,15 @@
 import React from "react";
+import { useContext } from "react";
+import { VideoContext } from "../Context/VideoContext";
 import { Box, Typography, CardMedia } from "@mui/material";
+import { Link } from "react-router-dom";
 
-const videos = [
-  {
-    id: 1,
-    title: "Oracle climbs 40% after earnings report & what it means for the market",
-    thumbnail: "https://img.youtube.com/vi/qUYW8F3zfrE/hqdefault.jpg",
-    duration: "06:15",
-    url: "https://www.youtube.com/watch?v=qUYW8F3zfrE",
-    time: "Just now"
-  },
-  {
-    id: 2,
-    title: "Markets in 3 Minutes: US Stocks Will Continue to Underperform",
-    thumbnail: "https://img.youtube.com/vi/xn_JYMrRQeo/hqdefault.jpg",
-    duration: "03:00",
-    url: "https://www.youtube.com/watch?v=xn_JYMrRQeo",
-    time: "2 hours ago"
-  },
-  {
-    id: 3,
-    title: "Earnings season commentary: What investors need to know",
-    thumbnail: "https://img.youtube.com/vi/tgbNymZ7vqY/hqdefault.jpg",
-    duration: "05:42",
-    url: "https://www.youtube.com/watch?v=tgbNymZ7vqY",
-    time: "13h ago"
-  }
-];
 
 const VideoCard = ({ video }) => {
   return (
     <Box
-      component="a"
-      href={video.url}
-      target="_blank"
-      rel="noopener noreferrer"
+      component={Link}
+      to={`/videos/${video.id}`}   // <-- go to single video page
       sx={{
         textDecoration: "none",
         color: "inherit",
@@ -91,15 +66,18 @@ const VideoCard = ({ video }) => {
 };
 
 const DailyBriefVideos = () => {
+  const {videos, loading} = useContext(VideoContext);
+
   return (
     <Box
       sx={{
         display: "flex",
         gap:"30px",
-        overflowX:"scroll"
+        overflowX:"scroll",
+        scrollbarWidth:"none"
       }}
     >
-      {videos.map((video) => (
+      {videos.slice(0, 3).map((video) => (
         <VideoCard key={video.id} video={video} />
       ))}
     </Box>

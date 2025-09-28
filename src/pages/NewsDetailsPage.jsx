@@ -27,7 +27,7 @@ import { LatestNewsContext } from '../Context/LatestNewsContext';
 
 // Mock user data for now 
   const user = {
-    firstName: "Ridwan",
+    firstName: "Michael",
     lastName: "Olukoya",
     image: null,
   }
@@ -36,7 +36,9 @@ import { LatestNewsContext } from '../Context/LatestNewsContext';
 const NewsDetailsPage = () => {
   const navigate = useNavigate();
   const {id} = useParams();
+
   const {latestNews, loading} = useContext(LatestNewsContext);
+
 
   //state to show comments 
   const [showComments, setShowComments] = useState(false) 

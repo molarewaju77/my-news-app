@@ -89,9 +89,7 @@ export default function BaseLayout(){
                     overflowX: "hidden", // prevent children from pushing out
                 }}
                 >
-                <Box sx={{
-                    
-                }} flex={1} minWidth={0}>
+                <Box flex={1} minWidth={0}>
                     <Outlet context={{showRightbar}}/>
                 </Box>
                 <Box sx={{ flexShrink: 0 }}>

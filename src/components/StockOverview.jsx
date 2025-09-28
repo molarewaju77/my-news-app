@@ -58,17 +58,6 @@ const StockOverview = () => {
         </Tabs>
 
 
-
-
-
-
-
-
-
-
-
-
-
         <Box sx={{marginTop:"30px"}}>
             {/* so it create the component for the active tab and does not render everyone at once nice👍 */}
             {React.createElement(mockTabs[value].component)}
