@@ -55,9 +55,10 @@ function App() {
 
                 {/* pages /components using only Navbar Layout{only NAvbar at the Top} */}
                 <Route element={<NavbarLayout/>}>
-                  <Route path='/subscription' element={<Subscription/>}/>
                   <Route path="/dashboard" element={<Dashboard/>}/>
                 </Route>
+                                  <Route path='/subscription' element={<Subscription/>}/>
+    
 
                 {/* for sign up flow*/}
                 <Route path='/register' element={<Registration/>} />

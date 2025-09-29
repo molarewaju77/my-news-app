@@ -3,30 +3,24 @@ import {
   AppBar,
   Toolbar,
   IconButton,
-  Typography,
+  Box,
+  Button,
+  Avatar,
   Menu,
   MenuItem,
   Badge,
-  Avatar,
-  Box,
-  InputBase,
-  Button,
+  Typography,
 } from "@mui/material";
-import {
-  Menu as MenuIcon,
-  Notifications as NotificationsIcon,
-  Search as SearchIcon,
-  AccountCircle,
-} from "@mui/icons-material";
-import { Link } from "react-router-dom";
+import { LockOutline, Menu as MenuIcon, Notifications as NotificationsIcon } from "@mui/icons-material";
+import { Link, useNavigate } from "react-router-dom";
 import Logo from "../assets/_2359108631152.svg";
+import { useAuth } from "../Context/AuthContext";
 
 const NavBar = ({ onMenuClick }) => {
+  const {user, logout} = useAuth();
   const [anchorNotif, setAnchorNotif] = useState(null);
   const [anchorProfile, setAnchorProfile] = useState(null);
-
-  // 👉 Replace later with real Auth
-  const [user, setUser] = useState(null);
+  const navigate = useNavigate();
 
   const notifications = [
     { id: 1, title: "Market Update", content: "Tech stocks rally" },
@@ -34,87 +28,141 @@ const NavBar = ({ onMenuClick }) => {
     { id: 3, title: "Motivational Quote", content: "Patience pays in markets" },
   ];
 
+  const handleLogout = () => {
+    logout();  // calls the context logout
+    navigate("/login"); 
+  };
   return (
-    <AppBar position="sticky" sx={{ bgcolor: "#1B1464" }}>
-      <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
-        {/* Left side - Menu & Logo */}
-        <Box display="flex" alignItems="center">
-          <IconButton color="inherit" onClick={onMenuClick} sx={{ display: { md: "none" } }}>
+    <AppBar position="sticky" sx={{ bgcolor: "#1B1464", px: { xs: 0, md: 4 }, py: 1 }}>
+      <Toolbar
+        sx={{
+          display: "flex",
+          flexWrap:"wrap",
+          alignItems: "center",
+          justifyContent: "space-between",
+        }}
+      >
+        {/* Logo */}
+        <Box
+          display="flex"
+          alignItems="center"
+          order={{ xs: 1, md: 1 }}
+        >
+          <IconButton
+            color="inherit"
+            onClick={onMenuClick}
+            sx={{ display: { md: "none" }, mr: 1 }}
+          >
             <MenuIcon />
           </IconButton>
-          <Box component={Link} to="/" sx={{ ml: 1 }}>
+          <Box component={Link} to="/">
             <Box
               component="img"
               src={Logo}
               alt="Logo"
-              sx={{
-                height: { xs: 20, md: 32 }, // 👈 20px on small, 32px on md+
-              }}
+              sx={{ height: { xs: 22, md: 32 } }}
             />
           </Box>
         </Box>
 
-        {/* Middle - Search */}
+        {/* Subscribe Button */}
+        {user && (
         <Box
           sx={{
-            display: { xs: "none", md: "flex" },
-            alignItems: "center",
-            bgcolor: "white",
-            borderRadius: "20px",
-            px: 2,
-            width: "40%",
+            order: { xs: 3, md: 2 },
+            flexGrow: { md: 1 , xs: 1},
+            display: "flex",
+            justifyContent: { xs: "flex-start", md: "center" },
+            mt: { xs: 1, md: 0 },
           }}
         >
-          <SearchIcon sx={{ color: "gray", mr: 1 }} />
-          <InputBase placeholder="Search news, symbols, companies…" fullWidth />
+          <Button component={Link} to="/subscription"
+            startIcon={<LockOutline/>}
+            sx={{
+              background: `
+                linear-gradient(180deg, #1B1464 0%, #1A1B6A 5%, #109BE8 100%),
+                linear-gradient(360deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2))
+              `,
+              boxShadow: '0 4px 12px rgba(16, 155, 232, 0.4)', // subtle light-blue glow
+              color: '#fff',
+              px: 3,
+              py: 1.25,
+              borderRadius: '999px', // makes it fully pill-shaped
+              fontSize: '0.875rem',
+              fontWeight: 500,
+              textTransform: 'none',
+              width: { xs: '100%', md: 'auto' },
+              transition: 'all 0.3s ease',
+              '&:hover': {
+                opacity: 0.95,
+                boxShadow: '0 6px 16px rgba(16, 155, 232, 0.5)',
+              },
+            }}
+          >
+            Subscribe to Premium
+          </Button>
         </Box>
+        )
+      }
 
-        {/* Right side - Conditional UI */}
-        <Box display="flex" alignItems="center" gap={2}>
+        {/* Right side - Sign In / Get Started or Profile */}
+        <Box
+          display="flex"
+          alignItems="center"
+          gap={2}
+          order={{ xs: 2, md: 3 }}
+        >
           {!user ? (
-            // 👉 Not logged in
             <>
-              <Button
-                component={Link}
-                to="/register"
-                sx={{
-                  background: "linear-gradient(90deg,#1B1464,#1A1B6A,#109BE8)",
-                  color: "white",
-                  px: "16px",
-                  py: "6px",
-                  borderRadius: "20px",
-                  fontSize: "14px",
-                  textTransform: "none",
-                  "&:hover": { opacity: 0.9, background: "linear-gradient(90deg,#1B1464,#1A1B6A,#109BE8)" },
-                }}
-              >
-                Get Started
-              </Button>
               <Button
                 component={Link}
                 to="/login"
                 sx={{
-                  display: { xs: "none", md: "inline-flex" }, // 👈 only show from md up
                   color: "white",
                   fontSize: "14px",
                   textTransform: "none",
-                  border: "1px solid white",  // <-- outline
+                  border: "1px solid white",
                   borderRadius: "20px",
+                  display:{xs:"none",md:"block"},
                   px: "16px",
                   py: "6px",
                   "&:hover": {
-                    backgroundColor: "rgba(255,255,255,0.1)", // subtle hover
-                    border: "1px solid white",
+                    backgroundColor: "rgba(255,255,255,0.1)",
                   },
                 }}
               >
                 Sign In
               </Button>
+              <Button
+                component={Link}
+                to="/register"
+                sx={{
+                  background: `
+                    linear-gradient(180deg, #1B1464 0%, #1A1B6A 5%, #109BE8 100%),
+                    linear-gradient(360deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2))
+                  `,
+                  color: '#fff',
+                  px: 3,
+                  py: 1.25,
+                  borderRadius: '999px',
+                  fontSize: '0.875rem',
+                  fontWeight: 500,
+                  textTransform: 'none',
+                  boxShadow: '0 4px 12px rgba(16, 155, 232, 0.4)',
+                  transition: 'all 0.3s ease',
+                  '&:hover': {
+                    opacity: 0.95,
+                    boxShadow: '0 6px 16px rgba(16, 155, 232, 0.5)',
+                    textDecoration: 'none', // avoid underline on hover
+                  },
+                  width: { xs: '100%', md: 'auto' },
+                }}
+              >
+                Get Started
+              </Button>
             </>
           ) : (
-            // 👉 Logged in
             <>
-              {/* Notifications */}
               <IconButton color="inherit" onClick={(e) => setAnchorNotif(e.currentTarget)}>
                 <Badge badgeContent={notifications.length} color="error">
                   <NotificationsIcon />
@@ -136,42 +184,35 @@ const NavBar = ({ onMenuClick }) => {
                   </MenuItem>
                 ))}
               </Menu>
-
-              {/* Profile */}
-              <IconButton color="inherit" onClick={(e) => setAnchorProfile(e.currentTarget)}>
-                <Avatar sx={{ bgcolor: "white", color: "#1B1464" }}>U</Avatar>
+              <IconButton 
+                color="inherit" 
+                onClick={(e) => setAnchorProfile(e.currentTarget)}
+              >
+                <Avatar
+                  src={user?.image || null} 
+                  sx={{ width: 42, height: 42, bgcolor: "white", color: "#1B1464" }}
+                >
+                  {/* Show first letter of firstName if no image */}
+                  {!user?.image && user?.firstName
+                    ? user.firstName.charAt(0).toUpperCase()
+                    : null}
+                </Avatar>
               </IconButton>
               <Menu
                 anchorEl={anchorProfile}
                 open={Boolean(anchorProfile)}
-                onClose={() => setAnchorProfile(null)}          
+                onClose={() => setAnchorProfile(null)}
               >
                 <MenuItem component={Link} to="/dashboard">Manage Account</MenuItem>
                 <MenuItem component={Link} to="/referral">Refer a Friend</MenuItem>
                 <MenuItem component={Link} to="/watchlist">My Watchlist</MenuItem>
                 <MenuItem component={Link} to="/help">Help Center</MenuItem>
-                <MenuItem onClick={() => setUser(null)}>Sign Out</MenuItem>
+                <MenuItem onClick={handleLogout}>Sign Out</MenuItem>
               </Menu>
             </>
           )}
         </Box>
       </Toolbar>
-
-      {/* Mobile Search (hidden on desktop) */}
-      <Box
-        sx={{
-          display: { xs: "flex", md: "none" },
-          alignItems: "center",
-          bgcolor: "white",
-          borderRadius: "20px",
-          mx: 2,
-          my: 1,
-          px: 2,
-        }}
-      >
-        <SearchIcon sx={{ color: "gray", mr: 1 }} />
-        <InputBase placeholder="Search…" fullWidth />
-      </Box>
     </AppBar>
   );
 };

@@ -23,6 +23,7 @@ const VideoCard = ({ video }) => {
         <CardMedia
           component="img"
           image={video.thumbnail}
+          loading="lazy"
           alt={video.title}
           sx={{
             width: "100%",

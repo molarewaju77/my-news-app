@@ -25,7 +25,7 @@ export default function Dashboard(){
   return(
     <Box sx={{width:{xs:"95%",md:"70%"},backgroundColor:"#FFFFFF", margin:"20px auto", boxShadow:'1'}}>
       <Box sx={{height:"78px",backgroundColor:"78px", display:"flex", alignItems:"center", pl:"40px", backgroundColor:"#1B1464"}}>
-        <Typography sx={{fontSize:"24px", fontWeight:"600", color:"white"}}>Manage account</Typography>
+        <Typography sx={{fontSize:"24px", fontWeight:{xs:"500", md:"600"}, color:"white"}}>Manage account</Typography>
       </Box>
       <Box sx={{width:"100%",m:{xs:"30px 0 0 0",md:"30px 0 0 41px"},}}>
         <Tabs                 
@@ -50,8 +50,8 @@ export default function Dashboard(){
               color: value === index ? "#218BC5" : "#232526",
               borderBottom: 1, borderColor: 'divider',
               textTransform: "none",
-              fontSize:"16px",
-              fontWeight:"600",
+              fontSize:{xs:"14px", md:"16px"},
+              fontWeight:{xs:"500", md:"600"}
               }}
             />
           ))}
