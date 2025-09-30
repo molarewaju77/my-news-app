@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {
   Box,
   Tabs,
@@ -13,20 +13,17 @@ import {
 } from "@mui/material";
 
 import LockedCell from "./LockedCell";
-import { useContext } from 'react';
 import { StockTableContext } from '../Context/StockContext';
 
 export default function StockPicksTable() {
   const [value, setValue] = useState(0);
+  const [premium, setPremium] = useState(false); // fixed spelling
 
-  //to use the stocktable context
-  const {categories, rows, loading} = useContext(StockTableContext);
-
-  const [premium, setPremimum] = useState(false);
+  // use the stock table context
+  const { categories, rows } = useContext(StockTableContext);
 
   const activeCategory = categories[value]?.value || " ";
   const filteredRows = rows.filter((row) => row.category === activeCategory);
-
 
   return (
     <Box>
@@ -67,7 +64,7 @@ export default function StockPicksTable() {
       {/* Table */}
       <Box sx={{ marginTop: "30px" }}>
         {filteredRows.length > 0 ? (
-          <TableContainer sx={{overflowX:"auto"}}>
+          <TableContainer sx={{ overflowX: "auto" }}>
             <Table>
               <TableHead>
                 <TableRow sx={{ backgroundColor: "#f9fafb" }}>
@@ -87,7 +84,7 @@ export default function StockPicksTable() {
                       sx={{
                         fontWeight: 600,
                         fontSize: "13px",
-                        lineHeight:"18px",
+                        lineHeight: "18px",
                         color: "#374151",
                         padding: "10px 9px",
                         borderBottom: "2px solid #e5e7eb",
@@ -117,10 +114,10 @@ export default function StockPicksTable() {
                     <TableCell sx={{ fontSize: "13px" }}>{row.currentPrice}</TableCell>
                     <TableCell sx={{ fontSize: "13px" }}>{row.sharePortfolio}</TableCell>
                     <TableCell sx={{ fontSize: "13px" }}>
-                      {premium ? marginHigh : <LockedCell />}
+                      {premium ? row.marginHigh : <LockedCell />}
                     </TableCell>
                     <TableCell sx={{ fontSize: "13px" }}>
-                      {premium ? marginLow : <LockedCell />}
+                      {premium ? row.marginLow : <LockedCell />}
                     </TableCell>
                     <TableCell sx={{ fontSize: "13px" }}>{row.wksHigh}</TableCell>
                     <TableCell sx={{ fontSize: "13px" }}>{row.wksLow}</TableCell>

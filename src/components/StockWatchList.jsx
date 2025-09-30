@@ -28,7 +28,7 @@ const StockWatchList = () => {
   const [watchlist, setWatchlist] = useState([]);
 
   //to use the stocktable context
-  const {categories, rows, loading} = useContext(StockTableContext);
+  const {categories, rows} = useContext(StockTableContext);
 
   // ✅ Load watchlist from localStorage on mount
   useEffect(() => {

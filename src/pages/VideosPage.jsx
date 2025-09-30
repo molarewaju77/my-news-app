@@ -69,7 +69,8 @@ const VideoCard = ({ video }) => {
 };
 
 const VideosPage = () => {
-  const {videos, loading} = useContext(VideoContext);
+  const {videos} = useContext(VideoContext);
+  
   //filer if its feautured or not...
   const featuredVideo = videos.find((v) => v.featured);
   const latestVideos = videos.filter((v) => !v.featured);
