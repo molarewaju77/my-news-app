@@ -20,29 +20,28 @@ import { useNavigate, useParams } from 'react-router-dom'
 
 import RelatedNews from '../components/RelatedNews';
 import { LatestNewsContext } from '../Context/LatestNewsContext';
-
-// Mock user data
-const user = {
-  firstName: "Michael",
-  lastName: "Olukoya",
-  image: null,
-}
+import { useAuth } from '../Context/AuthContext';
 
 const NewsDetailsPage = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const { latestNews } = useContext(LatestNewsContext);
+  const { user } = useAuth();
 
   const [showComments, setShowComments] = useState(false);
   const [likedComments, setLikedComments] = useState({});
+  const [newComment, setNewComment] = useState("");   // input state
 
   // Find the news item by id
   const news = latestNews.find((n) => String(n.id) === String(id));
 
+  // local comments state (so we can add to it)
+  const [comments, setComments] = useState(news ? news.comments : []);
+
   if (!news) return <Typography sx={{ mt: 4, textAlign: "center" }}>News not found.</Typography>;
 
   const handleShowComment = () => setShowComments(!showComments);
-  const handlePublish = () => console.log("news published 😂");
+
   const toggleLike = (id) => setLikedComments(prev => ({ ...prev, [id]: !prev[id] }));
 
   const handleShare = () => {
@@ -59,9 +58,26 @@ const NewsDetailsPage = () => {
     }
   };
 
+  // ✅ Handle publishing a new comment
+  const handlePublish = (e) => {
+    e.preventDefault();
+    if (!newComment.trim()) return;
+
+    const newCommentObj = {
+      id: comments.length + 1,
+      name: user.firstName || "Anonymous",
+      text: newComment,
+      time: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
+    };
+
+    setComments(prev => [...prev, newCommentObj]); // add comment
+    setNewComment(""); // clear input
+  };
+
   return (
     <Box sx={{ width: "100%", margin: "auto", boxShadow: "1" }}>
       <Box width={"92%"} margin={"auto"}>
+        {/* Back */}
         <Box display={"flex"} alignItems={'center'} gap={'14px'}>
           <Button onClick={() => navigate("/news")} sx={{ backgroundColor: "#F6F6F6", minWidth: "0px" }}>
             <ArrowBackIosNewOutlinedIcon sx={{ fontSize: "20px" }} />
@@ -71,12 +87,15 @@ const NewsDetailsPage = () => {
           </Typography>
         </Box>
 
+        {/* Title */}
         <Box mt={'19px'}>
           <Typography sx={{ fontSize: "32px", fontWeight: "700", lineHeight: "45px" }}>{news.title}</Typography>
         </Box>
 
+        {/* Image */}
         <Box mt={'88px'} sx={{ height: "369px", width: "100%" }} src={news.image} alt={news.title} component="img" />
 
+        {/* Summary */}
         <Box mt={"27px"} py={"20px"}>
           {Array.isArray(news.summary) ? (
             <Stack spacing={2}>
@@ -92,21 +111,30 @@ const NewsDetailsPage = () => {
         <Divider />
         <Box display={'flex'} gap={'40px'} height={'65px'} alignItems={'center'}>
           <Button onClick={handleShare} sx={{ fontSize: "12px", color: "#218BC5", textTransform: "none" }} startIcon={<ShareOutlinedIcon />}>Share</Button>
+          {user && (
           <Box>
             <Button onClick={handleShowComment} sx={{ fontSize: "12px", color: "#218BC5", textTransform: "none" }} startIcon={<IoChatbubbleOutline />}>
-              Comments&nbsp;({news.comments.length})
+              Comments&nbsp;({comments.length})
               {showComments ? <KeyboardArrowDownOutlinedIcon /> : <KeyboardArrowUpOutlinedIcon />}
             </Button>
           </Box>
+          )}
         </Box>
         <Divider />
 
+        {/* Comments */}
         <Box sx={{ mt: "20px" }}>
           {showComments && (
             <Box>
-              <Typography sx={{ color: "rgba(110, 110, 112, 1)", fontSize: "24px", mb: "20px" }}>Comments ({news.comments.length})</Typography>
+              <Typography sx={{ color: "rgba(110, 110, 112, 1)", fontSize: "24px", mb: "20px" }}>
+                Comments ({comments.length})
+              </Typography>
               
-              <Box sx={{ display: "flex", flexDirection: "column", gap: "25px" }} component="form">
+              <Box 
+                sx={{ display: "flex", flexDirection: "column", gap: "25px" }} 
+                component="form" 
+                onSubmit={handlePublish}
+              >
                 <Box sx={{ display: "flex", gap: "20px" }}>
                   <Avatar
                     src={user.image || undefined}
@@ -119,14 +147,22 @@ const NewsDetailsPage = () => {
                     label="Add a comment..."
                     rows={2}
                     fullWidth
+                    value={newComment}
+                    onChange={(e) => setNewComment(e.target.value)}
                     sx={{ "& .MuiInputBase-input": { fontSize: 14 } }}
                   />
                 </Box>
-                <Button type='submit' onClick={handlePublish} sx={{ alignSelf: "flex-end", backgroundColor: "rgba(110, 110, 112, 1)", color: "white", textTransform: "none", p: "8px 30px" }}>Publish</Button>
+                <Button 
+                  type='submit' 
+                  sx={{ alignSelf: "flex-end", backgroundColor: "rgba(110, 110, 112, 1)", color: "white", textTransform: "none", p: "8px 30px" }}
+                >
+                  Publish
+                </Button>
               </Box>
 
+              {/* Comment List */}
               <Box sx={{ display: "flex", flexDirection: "column", gap: "30px", mt: "30px" }}>
-                {news.comments.map((comment, index) => (
+                {comments.map((comment, index) => (
                   <Box key={index} sx={{ display: "flex", flexDirection: "column" }}>
                     <Divider sx={{ mb: 2 }} />
                     <Box sx={{ display: "flex", gap: "17px" }}>
@@ -158,6 +194,7 @@ const NewsDetailsPage = () => {
           )}
         </Box>
 
+        {/* Related */}
         <Box mt={'91px'}>
           <Typography sx={{ fontSize: "24px", fontWeight: "700" }}>Related News</Typography>
           <Box mt={'20px'}>

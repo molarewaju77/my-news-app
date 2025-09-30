@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { Box, Button, Divider, Typography, CircularProgress } from '@mui/material';
+import React, { useContext, useState } from 'react';
+import { Box, Button, Divider, Typography, Skeleton } from '@mui/material';
 import ArrowBackIosNewOutlinedIcon from '@mui/icons-material/ArrowBackIosNewOutlined';
 import IosShareOutlinedIcon from '@mui/icons-material/IosShareOutlined';
 import { VideoContext } from '../Context/VideoContext';
@@ -64,10 +64,11 @@ const VideoDetailsPage = () => {
   const { id } = useParams();
   const { videos } = useContext(VideoContext);
   const navigate = useNavigate();
+  const [videoLoaded, setVideoLoaded] = useState(false);
 
   const video = videos.find((v) => v.id.toString() === id);
 
-  // Safety check: if no video is found, show a message
+  // Safety check: if no video is found
   if (!video) {
     return (
       <Box sx={{ width: "95%", margin: "auto", textAlign: "center", mt: 10 }}>
@@ -129,8 +130,16 @@ const VideoDetailsPage = () => {
           {video.title}
         </Typography>
 
-        {/* Video Player */}
-        <Box sx={{ height: "400px", m: "20px 0 30px 0" }}>
+        {/* Video Player with Skeleton */}
+        <Box sx={{ height: "400px", m: "20px 0 30px 0", position: "relative" }}>
+          {!videoLoaded && (
+            <Skeleton animation="wave"
+              variant="rectangular"
+              width="100%"
+              height="100%"
+              sx={{ position: "absolute", top: 0, left: 0 }}
+            />
+          )}
           <iframe
             width="100%"
             height="100%"
@@ -139,6 +148,8 @@ const VideoDetailsPage = () => {
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
+            style={{ display: videoLoaded ? "block" : "none" }}
+            onLoad={() => setVideoLoaded(true)}
           ></iframe>
         </Box>
 
