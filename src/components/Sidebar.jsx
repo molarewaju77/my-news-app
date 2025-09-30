@@ -25,12 +25,6 @@ const Sidebar = ({ mobileOpen, onClose }) => {
     {text:"Gamification", path:"gamification"}
   ]
 
-  // helper to close when a link is clicked
-  const handleNavClick = () => {
-    if (isMobile) {
-      onClose();
-    }
-  };
   
   
   //we created this before the return statement so we dont create it twicw for desktop and mobile
@@ -39,7 +33,7 @@ const Sidebar = ({ mobileOpen, onClose }) => {
     <Box sx={{display:"flex", justifyContent:"center", flexDirection:"column",paddingTop:{xs:"60px", md:"40px"}, width:{xs: Drawerwidth, md:"200px",position:"relative"}}}>
       <Box sx={{display:"flex", flexDirection:"column"}}>
         {Links.map((link, index) =>(
-          <NavLink key={index} to={link.path}  onClick={handleNavClick}
+          <NavLink key={index} to={link.path}  onClick={isMobile && onClose}
             style={({isActive}) => ({
               color: isActive ? "#218BC5" : "black",
               backgroundColor: isActive && "rgba(250, 250, 250, 1)",
@@ -49,6 +43,7 @@ const Sidebar = ({ mobileOpen, onClose }) => {
               height:"40px",
               display: "flex",
               alignItems: "center",
+              cursor:"pointer"
             })}
           >
             {link.text}

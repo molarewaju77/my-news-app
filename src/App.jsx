@@ -23,9 +23,6 @@ import AuthProvider from './Context/AuthContext';
 
 //Auth components
 import ResetPassword from './pages/Auth/ResetPassword';
-import NumberVal  from "../src/components/Auth/Number"; 
-import CodePhoneNumber from "../src/components/Auth/CodeEmail";  
-
 import ScrollToTop from './components/ScrollToTop';
 
 import {  LatestNewsProvider } from './Context/LatestNewsContext';
@@ -57,15 +54,13 @@ function App() {
                 <Route element={<NavbarLayout/>}>
                   <Route path="/dashboard" element={<Dashboard/>}/>
                 </Route>
-                                  <Route path='/subscription' element={<Subscription/>}/>
+                <Route path='/subscription' element={<Subscription/>}/>
     
 
                 {/* for sign up flow*/}
                 <Route path='/register' element={<Registration/>} />
                 <Route path="/Login" element={<Login />} />
                 <Route path='/reset-password' element={<ResetPassword/>}/>
-                <Route path="/NumberVal" element={<NumberVal/>}/>
-                <Route path="/code-phone-number" element={<CodePhoneNumber/>}/> 
               </Routes>   
             </VideoProvider>  
           </StockProvider>

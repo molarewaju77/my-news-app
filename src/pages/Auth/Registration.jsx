@@ -123,19 +123,19 @@ const Registration = () => {
         <Box component="form" onSubmit={handlesubmit} sx={{display:"flex", flexDirection:"column", gap:"10px", mt:"9.64px",}}>
           <Box>
             <Typography sx={{color:"#6E6E70", fontSize:"12.58px", fontWeight:"550", mb:"10px"}}>Full name</Typography>
-            <InputField size='small' name='fullName' value={fullName} required type='text'
+            <InputField size='small'placeholder='full name' name='fullName' value={fullName} required type='text'
               onChange={(e) => setFullName(e.target.value)}
             />
           </Box>
           <Box>
             <Typography sx={{color:"#6E6E70", fontSize:"12.58px", fontWeight:"550", mb:"10px"}}>Email</Typography>
-            <InputField  size='small' name='email' value={email} required type='email'
+            <InputField  size='small' placeholder='email' name='email' value={email} required type='email'
               onChange={(e) => setemail(e.target.value)}
             />
           </Box>
           <Box>
             <Typography sx={{color:"#6E6E70", fontSize:"12.58px", fontWeight:"550", mb:"10px"}}>Password</Typography>
-            <InputField  size='small' required name='password' value={password}
+            <InputField  size='small' required name='password' value={password} placeholder='password'
               type={showPassword ? "text" : "password"} 
               onChange={(e) => SetPassword(e.target.value)}
               InputProps={{

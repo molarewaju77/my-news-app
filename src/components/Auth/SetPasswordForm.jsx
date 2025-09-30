@@ -53,6 +53,7 @@ const SetPasswordForm = ({ onFinish }) => {
           size='small' 
           required 
           name='password'
+          placeholder='password'
           value={password}
           type={showPassword ? "text" : "password"} 
           onChange={(e) => setPassword(e.target.value)}
@@ -77,6 +78,7 @@ const SetPasswordForm = ({ onFinish }) => {
           size='small' 
           required 
           name='confirmPassword'   // ✅ fixed name
+          placeholder='confirm password'
           value={confirmPassword}
           type={showConfirmPassword ? "text" : "password"} 
           onChange={(e) => setConfirmPassword(e.target.value)}

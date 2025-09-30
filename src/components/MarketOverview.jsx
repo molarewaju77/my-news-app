@@ -151,7 +151,7 @@ const MarketOverview = () => {
             title={card.title}
           />
         ))}
-        <style jsx>{`
+        <style>{`
           .scrollbar-hide::-webkit-scrollbar {
             display: none;
           }

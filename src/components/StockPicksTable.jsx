@@ -67,7 +67,7 @@ export default function StockPicksTable() {
       {/* Table */}
       <Box sx={{ marginTop: "30px" }}>
         {filteredRows.length > 0 ? (
-          <TableContainer>
+          <TableContainer sx={{overflowX:"auto"}}>
             <Table>
               <TableHead>
                 <TableRow sx={{ backgroundColor: "#f9fafb" }}>

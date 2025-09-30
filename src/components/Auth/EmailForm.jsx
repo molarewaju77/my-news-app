@@ -41,7 +41,7 @@ const EmailForm = ({onNext}) => {
         <Typography sx={{color:"#6E6E70", fontSize:"12.58px", fontWeight:"550", mb:"10px"}}>
             We’ll send a confirmation code to your email.
         </Typography>
-        <InputField size='small' name='email' value={email} required type='email'
+        <InputField size='small' name='email' value={email} required type='email' placeholder='email'
             onChange={(e) => setemail(e.target.value)}
         />
         </Box>
