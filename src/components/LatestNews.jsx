@@ -40,9 +40,21 @@ const LatestNews = () => {
                 {news.title}
               </Typography>
               {/* Concatenate summary array into a string */}
-              <Typography sx={{ fontSize: "12px", fontWeight: "400", lineHeight: "20px", color: "#1B1C1E" }}>
+                <Typography
+                sx={{
+                    fontSize: "12px",
+                    fontWeight: "400",
+                    lineHeight: "20px",
+                    color: "#1B1C1E",
+                    display: "-webkit-box",
+                    WebkitLineClamp: 3,   // number of lines you want to show
+                    WebkitBoxOrient: "vertical",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                }}
+                >
                 {Array.isArray(news.summary) ? news.summary.join(" ") : news.summary}
-              </Typography>
+                </Typography>
             </Box>
           </Box>
         ))}
