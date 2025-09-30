@@ -7,10 +7,6 @@ import StockOverview from '../components/StockOverview'
 import { useOutletContext } from 'react-router-dom'
 
 const StockPicksPage = () => {
-
-  //this is passed from the outlet can be used to reduce any content in this page because the right bar wont show //will set it up later
-  const { showRightbar } = useOutletContext();
-
   return (
     <Box sx={{boxShadow:'1',display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center",maxWidth:"100%"}}>
       <MarketOverview/>
