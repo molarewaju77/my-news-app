@@ -30,6 +30,7 @@ const NavBar = ({ onMenuClick }) => {
 
   const handleLogout = () => {
     logout();  // calls the context logout
+    setAnchorProfile(null)
     navigate("/login"); 
   };
   return (
@@ -190,7 +191,7 @@ const NavBar = ({ onMenuClick }) => {
               >
                 <Avatar
                   src={user?.image || null} 
-                  sx={{ width: 42, height: 42, bgcolor: "white", color: "#1B1464" }}
+                  sx={{ width: 42, height: 42, bgcolor: "white", color: "#1B1464", cursor:"pointer" }}
                 >
                   {/* Show first letter of firstName if no image */}
                   {!user?.image && user?.firstName
@@ -203,11 +204,11 @@ const NavBar = ({ onMenuClick }) => {
                 open={Boolean(anchorProfile)}
                 onClose={() => setAnchorProfile(null)}
               >
-                <MenuItem component={Link} to="/dashboard">Manage Account</MenuItem>
-                <MenuItem component={Link} to="/referral">Refer a Friend</MenuItem>
-                <MenuItem component={Link} to="/watchlist">My Watchlist</MenuItem>
-                <MenuItem component={Link} to="/help">Help Center</MenuItem>
-                <MenuItem onClick={handleLogout}>Sign Out</MenuItem>
+                <MenuItem component={Link} to="/dashboard" onClick={() => setAnchorProfile(null)}>Manage Account</MenuItem>
+                <MenuItem component={Link} to="/referral" onClick={() => setAnchorProfile(null)}>Refer a Friend</MenuItem>
+                <MenuItem component={Link} to="/watchlist" onClick={() => setAnchorProfile(null)}>My Watchlist</MenuItem>
+                <MenuItem component={Link} to="/help" onClick={() => setAnchorProfile(null)}>Help Center</MenuItem>
+                <MenuItem onClick={handleLogout} >Sign Out</MenuItem>
               </Menu>
             </>
           )}

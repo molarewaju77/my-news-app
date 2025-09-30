@@ -3,15 +3,11 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 const AuthContext = createContext();
 
 export default function AuthProvider({ children }) {
-  const [user, setUser] = useState(null);
-
-  // Load user from localStorage when app starts
-  useEffect(() => {
+  // ✅ Initialize from localStorage immediately
+  const [user, setUser] = useState(() => {
     const savedUser = localStorage.getItem("user");
-    if (savedUser) {
-      setUser(JSON.parse(savedUser));
-    }
-  }, []);
+    return savedUser ? JSON.parse(savedUser) : null;
+  });
 
   // Save user to localStorage whenever it changes
   useEffect(() => {

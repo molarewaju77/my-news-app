@@ -1,11 +1,53 @@
-import React from 'react';
-import { Box, Button, Divider, Typography } from '@mui/material';
+import React, { useContext, useEffect, useState } from 'react';
+import { Box, Button, Divider, Typography, CircularProgress } from '@mui/material';
 import ArrowBackIosNewOutlinedIcon from '@mui/icons-material/ArrowBackIosNewOutlined';
 import IosShareOutlinedIcon from '@mui/icons-material/IosShareOutlined';
-import { useContext } from 'react';
 import { VideoContext } from '../Context/VideoContext';
 import { useNavigate, useParams, Link } from 'react-router-dom';
 import CardMedia from '@mui/material/CardMedia';
+
+import { Skeleton } from "@mui/material";
+
+const VideoSkeleton = () => (
+  <Box sx={{ width: "95%", margin: "auto" }}>
+    {/* Back button */}
+    <Skeleton variant="circular" width={40} height={40} animation="wave" />
+
+    {/* Title */}
+    <Skeleton variant="text" width="60%" height={50} sx={{ mt: 2 }} animation="wave" />
+
+    {/* Video Player Placeholder */}
+    <Skeleton 
+      variant="rectangular" 
+      width="100%" 
+      height={400} 
+      sx={{ mt: 2, mb: 3, borderRadius: 2 }} 
+      animation="wave" 
+    />
+
+    {/* Time + Share */}
+    <Skeleton variant="text" width="30%" animation="wave" />
+    <Skeleton variant="text" width="20%" animation="wave" />
+
+    {/* Related Videos */}
+    <Skeleton variant="text" width="40%" height={30} sx={{ mt: 4, mb: 2 }} animation="wave" />
+    <Box sx={{ display: "flex", gap: "30px", overflowX: "scroll" }}>
+      {[1, 2, 3].map((i) => (
+        <Box key={i} sx={{ minWidth: "252px" }}>
+          <Skeleton 
+            variant="rectangular" 
+            width={252} 
+            height={144} 
+            sx={{ borderRadius: 2 }} 
+            animation="wave" 
+          />
+          <Skeleton variant="text" width="80%" sx={{ mt: 1 }} animation="wave" />
+          <Skeleton variant="text" width="50%" animation="wave" />
+        </Box>
+      ))}
+    </Box>
+  </Box>
+);
 
 const VideoCard = ({ video }) => {
   return (
@@ -15,7 +57,6 @@ const VideoCard = ({ video }) => {
       sx={{
         textDecoration: "none",
         color: "inherit",
-        // width: "31%",
         minWidth: "252px",
       }}
     >
@@ -50,14 +91,7 @@ const VideoCard = ({ video }) => {
       </Box>
 
       {/* Title */}
-      <Typography
-        sx={{
-          mt: "14px",
-          mb: "4px",
-          fontWeight: 700,
-          fontSize: "15px",
-        }}
-      >
+      <Typography sx={{ mt: "14px", mb: "4px", fontWeight: 700, fontSize: "15px" }}>
         {video.title}
       </Typography>
 
@@ -74,9 +108,16 @@ const VideoDetailsPage = () => {
   const { videos } = useContext(VideoContext);
   const navigate = useNavigate();
 
+  const [loading, setLoading] = useState(true);
+
+  // simulate loading
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 1000); // 2s spinner
+    return () => clearTimeout(timer);
+  }, []);
+
   const video = videos.find((v) => v.id.toString() === id);
 
-  // Grab 3 other videos (not the current one)
   const relatedVideos = videos.filter((v) => v.id.toString() !== id).slice(0, 3);
 
   const getEmbedUrl = (url) => {
@@ -105,6 +146,12 @@ const VideoDetailsPage = () => {
       }
     }
   };
+
+  // ⏳ Show spinner while loading
+if (loading) {
+  return <VideoSkeleton />;
+}
+
 
   return (
     <Box>
@@ -136,19 +183,19 @@ const VideoDetailsPage = () => {
         </Box>
 
         <Divider />
-            {/* Time + Share */}
-            <Box sx={{ display: "flex", alignItems: "center", py: "16px" }}>
-            <Typography sx={{ fontSize: "13px", fontWeight: "400", flexGrow: "1" }}>
-                {video.time}
-            </Typography>
-            <Button 
-                onClick={handleShare} 
-                sx={{ fontSize: "13px", color: "#000000", textTransform: "none" }} 
-                startIcon={<IosShareOutlinedIcon fontSize='small' />}
-            >
-                Share
-            </Button>
-            </Box>
+        {/* Time + Share */}
+        <Box sx={{ display: "flex", alignItems: "center", py: "16px" }}>
+          <Typography sx={{ fontSize: "13px", fontWeight: "400", flexGrow: "1" }}>
+            {video.time}
+          </Typography>
+          <Button 
+            onClick={handleShare} 
+            sx={{ fontSize: "13px", color: "#000000", textTransform: "none" }} 
+            startIcon={<IosShareOutlinedIcon fontSize='small' />}
+          >
+            Share
+          </Button>
+        </Box>
         <Divider />
 
         {/* Related Videos */}

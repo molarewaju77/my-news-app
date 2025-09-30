@@ -22,6 +22,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import styled from '@emotion/styled';
 import { Link, useNavigate } from 'react-router-dom';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
+import { useAuth } from '../../Context/AuthContext';
 
 
 //styled component for Textfield
@@ -35,6 +36,7 @@ const InputField = styled(TextField)({
 })
 
 const Login = () => {
+  const {setUser} = useAuth();
   const [email, setemail] = useState("");
   const [password, SetPassword] = useState("")
   const [showPassword, setShowPassword] = useState(false);
@@ -50,6 +52,7 @@ const Login = () => {
       password: form.password.value,
     }
 
+    setUser(data)
     navigate("/")
   }
 

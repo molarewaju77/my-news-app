@@ -29,12 +29,19 @@ const PersonalInfoTab = () => {
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
     if (file) {
-      setUser({
-        ...(user ||  {}),
-        image: URL.createObjectURL(file),
-      });
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const updatedUser = {
+          ...(user || {}),
+          image: reader.result, // Base64 string
+        };
+        setUser(updatedUser);
+        localStorage.setItem("user", JSON.stringify(updatedUser)); // ✅ persist
+      };
+      reader.readAsDataURL(file); // convert to Base64
     }
   };
+
   
   const fileInputRef = useRef(null);
   //connect the button onclick to the fle onclick

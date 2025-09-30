@@ -9,6 +9,7 @@ import {
   TableCell,
   TableBody,
   Typography,
+  TableContainer,
 } from "@mui/material";
 
 import LockedCell from "./LockedCell";
@@ -66,66 +67,68 @@ export default function StockPicksTable() {
       {/* Table */}
       <Box sx={{ marginTop: "30px" }}>
         {filteredRows.length > 0 ? (
-          <Table>
-            <TableHead>
-              <TableRow sx={{ backgroundColor: "#f9fafb" }}>
-                {[
-                  "Ticker",
-                  "Name",
-                  "Market Cap",
-                  "Current Price",
-                  "% Share Portfolio",
-                  "% Margin 52Wks - High",
-                  "% Margin 52Wks - Low",
-                  "52 Wks High",
-                  "52 Wks Low",
-                ].map((head, i) => (
-                  <TableCell
-                    key={i}
+          <TableContainer>
+            <Table>
+              <TableHead>
+                <TableRow sx={{ backgroundColor: "#f9fafb" }}>
+                  {[
+                    "Ticker",
+                    "Name",
+                    "Market Cap",
+                    "Current Price",
+                    "% Share Portfolio",
+                    "% Margin 52Wks - High",
+                    "% Margin 52Wks - Low",
+                    "52 Wks High",
+                    "52 Wks Low",
+                  ].map((head, i) => (
+                    <TableCell
+                      key={i}
+                      sx={{
+                        fontWeight: 600,
+                        fontSize: "13px",
+                        lineHeight:"18px",
+                        color: "#374151",
+                        padding: "10px 9px",
+                        borderBottom: "2px solid #e5e7eb",
+                      }}
+                    >
+                      {head}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {filteredRows.map((row, index) => (
+                  <TableRow
+                    key={index}
+                    hover
                     sx={{
-                      fontWeight: 600,
-                      fontSize: "13px",
-                      lineHeight:"18px",
-                      color: "#374151",
-                      padding: "10px 9px",
-                      borderBottom: "2px solid #e5e7eb",
+                      "&:hover": { backgroundColor: "#f3f4f6" },
                     }}
                   >
-                    {head}
-                  </TableCell>
+                    <TableCell sx={{ fontSize: "13px" }}>
+                      {premium ? row.ticker : <LockedCell />}
+                    </TableCell>
+                    <TableCell sx={{ fontSize: "13px" }}>
+                      {premium ? row.name : <LockedCell />}
+                    </TableCell>
+                    <TableCell sx={{ fontSize: "13px" }}>{row.marketCap}</TableCell>
+                    <TableCell sx={{ fontSize: "13px" }}>{row.currentPrice}</TableCell>
+                    <TableCell sx={{ fontSize: "13px" }}>{row.sharePortfolio}</TableCell>
+                    <TableCell sx={{ fontSize: "13px" }}>
+                      {premium ? marginHigh : <LockedCell />}
+                    </TableCell>
+                    <TableCell sx={{ fontSize: "13px" }}>
+                      {premium ? marginLow : <LockedCell />}
+                    </TableCell>
+                    <TableCell sx={{ fontSize: "13px" }}>{row.wksHigh}</TableCell>
+                    <TableCell sx={{ fontSize: "13px" }}>{row.wksLow}</TableCell>
+                  </TableRow>
                 ))}
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {filteredRows.map((row, index) => (
-                <TableRow
-                  key={index}
-                  hover
-                  sx={{
-                    "&:hover": { backgroundColor: "#f3f4f6" },
-                  }}
-                >
-                  <TableCell sx={{ fontSize: "13px" }}>
-                    {premium ? row.ticker : <LockedCell />}
-                  </TableCell>
-                  <TableCell sx={{ fontSize: "13px" }}>
-                    {premium ? row.name : <LockedCell />}
-                  </TableCell>
-                  <TableCell sx={{ fontSize: "13px" }}>{row.marketCap}</TableCell>
-                  <TableCell sx={{ fontSize: "13px" }}>{row.currentPrice}</TableCell>
-                  <TableCell sx={{ fontSize: "13px" }}>{row.sharePortfolio}</TableCell>
-                  <TableCell sx={{ fontSize: "13px" }}>
-                    {premium ? marginHigh : <LockedCell />}
-                  </TableCell>
-                  <TableCell sx={{ fontSize: "13px" }}>
-                    {premium ? marginLow : <LockedCell />}
-                  </TableCell>
-                  <TableCell sx={{ fontSize: "13px" }}>{row.wksHigh}</TableCell>
-                  <TableCell sx={{ fontSize: "13px" }}>{row.wksLow}</TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+              </TableBody>
+            </Table>
+          </TableContainer>
         ) : (
           <Typography variant="body2" sx={{ mt: 2 }}>
             No stocks found for {activeCategory}

@@ -13,7 +13,8 @@ import {
   MenuItem,
   Select,
   Stack,
-  IconButton
+  IconButton,
+  TableContainer
 } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -153,67 +154,69 @@ const StockWatchList = () => {
         {/* Table */}
         <Box sx={{ marginTop: "30px" }}>
           {filteredRows.length > 0 ? (
-            <Table>
-              <TableHead>
-                <TableRow sx={{ backgroundColor: "#f9fafb" }}>
-                  {[
-                    "Ticker",
-                    "Name",
-                    "Market Cap",
-                    "Current Price",
-                    "% Share Portfolio",
-                    "% Margin 52Wks - High",
-                    "% Margin 52Wks - Low",
-                    "52 Wks High",
-                    "52 Wks Low",
-                    "", // added column
-                  ].map((head, i) => (
-                    <TableCell
-                      key={i}
-                      sx={{
-                        fontWeight: 600,
-                        fontSize: "13px",
-                        lineHeight:"18px",
-                        color: "#374151",
-                        padding: "10px 9px",
-                        borderBottom: "2px solid #e5e7eb",
-                      }}
-                    >
-                      {head}
-                    </TableCell>
-                  ))}
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {filteredRows.length > 0 ? (
-                  filteredRows.map((row, index) => (
-                    <TableRow key={index}>
-                      <TableCell>{row.ticker}</TableCell>
-                      <TableCell>{row.name}</TableCell>
-                      <TableCell>{row.marketCap}</TableCell>
-                      <TableCell>{row.currentPrice}</TableCell>
-                      <TableCell>{row.sharePortfolio}</TableCell>
-                      <TableCell>{row.marginHigh}</TableCell>
-                      <TableCell>{row.marginLow}</TableCell>
-                      <TableCell>{row.wksHigh}</TableCell>
-                      <TableCell>{row.wksLow}</TableCell>
-                      <TableCell>
-                        <IconButton
-                          color="error"
-                          onClick={() => handleDelete(row.ticker, row.category)}
-                        >
-                          <DeleteIcon sx={{fontSize:"17px"}}/>
-                        </IconButton>
+            <TableContainer>
+              <Table>
+                <TableHead>
+                  <TableRow sx={{ backgroundColor: "#f9fafb" }}>
+                    {[
+                      "Ticker",
+                      "Name",
+                      "Market Cap",
+                      "Current Price",
+                      "% Share Portfolio",
+                      "% Margin 52Wks - High",
+                      "% Margin 52Wks - Low",
+                      "52 Wks High",
+                      "52 Wks Low",
+                      "", // added column
+                    ].map((head, i) => (
+                      <TableCell
+                        key={i}
+                        sx={{
+                          fontWeight: 600,
+                          fontSize: "13px",
+                          lineHeight:"18px",
+                          color: "#374151",
+                          padding: "10px 9px",
+                          borderBottom: "2px solid #e5e7eb",
+                        }}
+                      >
+                        {head}
                       </TableCell>
-                    </TableRow>
-                  ))
-                ) : (
-                  <TableRow>
-                    <TableCell colSpan={10} align="center">No data</TableCell>
+                    ))}
                   </TableRow>
-                )}
-              </TableBody>
-            </Table>
+                </TableHead>
+                <TableBody>
+                  {filteredRows.length > 0 ? (
+                    filteredRows.map((row, index) => (
+                      <TableRow key={index}>
+                        <TableCell>{row.ticker}</TableCell>
+                        <TableCell>{row.name}</TableCell>
+                        <TableCell>{row.marketCap}</TableCell>
+                        <TableCell>{row.currentPrice}</TableCell>
+                        <TableCell>{row.sharePortfolio}</TableCell>
+                        <TableCell>{row.marginHigh}</TableCell>
+                        <TableCell>{row.marginLow}</TableCell>
+                        <TableCell>{row.wksHigh}</TableCell>
+                        <TableCell>{row.wksLow}</TableCell>
+                        <TableCell>
+                          <IconButton
+                            color="error"
+                            onClick={() => handleDelete(row.ticker, row.category)}
+                          >
+                            <DeleteIcon sx={{fontSize:"17px"}}/>
+                          </IconButton>
+                        </TableCell>
+                      </TableRow>
+                    ))
+                  ) : (
+                    <TableRow>
+                      <TableCell colSpan={10} align="center">No data</TableCell>
+                    </TableRow>
+                  )}
+                </TableBody>
+              </Table>
+            </TableContainer>
           ) : (
             <Typography variant="body2" sx={{ mt: 2 , fontSize:"24px", fontWeight:"700", textAlign:"center",color:"#CACCD0"}}>
               No data
