@@ -35,9 +35,9 @@ export default function BaseLayout(){
     // // state for premimum content
     // const [isPremium, setIsPremium] = useState(false)
 
-    const handleDrawerToggle = () => {
-        setMobileOpen(!mobileOpen);
-    };
+    const handleDrawerOpen = () => setMobileOpen(true);
+    const handleDrawerClose = () => setMobileOpen(false);
+
 
     //to hide the right bar when we are on stock pick page 
     const { pathname } = useLocation();
@@ -50,7 +50,7 @@ export default function BaseLayout(){
             <CssBaseline/>
             <Box sx={{}}>
             {/* Navbar */}
-            <Navbar onMenuClick={handleDrawerToggle}/>
+            <Navbar onMenuClick={handleDrawerOpen}/>
 
             <Box display="flex" sx={{ overflowX: "hidden" }}>
             {/* Fixed Sidebar */}
@@ -64,7 +64,7 @@ export default function BaseLayout(){
                 flexShrink: 0,
                 }}
             >
-                <Sidebar mobileOpen={mobileOpen} onClose={handleDrawerToggle} />
+                <Sidebar mobileOpen={mobileOpen} onClose={handleDrawerClose} />
             </Box>
 
             {/* Main content + RightBar */}
